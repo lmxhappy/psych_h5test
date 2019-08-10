@@ -1,0 +1,53 @@
+body {
+    overflow: hidden;
+    margin: 0;
+    
+    font-family: :"Microsoft YaHei",微软雅黑,"Oswald","Open Sans",sans-serif;
+
+}
+#page{
+display:table;
+width:100%;
+height:100%;
+}	
+
+#content {
+    width: 100%;
+	height:200px;
+    opacity: 1;
+	margin:0 auto;
+	text-align:center;
+	
+	vertical-align:middle;
+  display:table-cell;
+}
+
+#stage {
+	position:relative;
+	top:20px;
+	height:60%;
+	 width: 100%;
+
+	display:table;
+}
+#plus{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	margin:0 auto;
+}
+#control{
+	margin-top:20px;
+}
+#introduce{
+	width:50%;
+	text-align:center;
+	margin:0 auto;
+}
+#detail{
+	text-align:left;
+
+}
+#nextButton{
+	margin-top:50px;
+}
