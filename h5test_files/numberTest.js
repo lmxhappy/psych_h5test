@@ -122,9 +122,8 @@ function numberTest(){
 	//setTimeout(sound,18000);
 	setTimeout("sound(dtd)",soundTime);
 
-	//判断时间timer开启
-	wait(choiceWindowTime)
-				.done(endUp);
+	
+				
 	
 }
 $(function(){
