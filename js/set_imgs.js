@@ -34,7 +34,7 @@ $(function(){
             
 
         img_num_list = [3,2,1,5,4,2,5,3,4,1,5,2,3,1,4,3,1,2,4,5,2,1,3,5,4,1,4,5,3,2,1,3,4,2,5,4,2,3,5,1,4,5,2,1,3,5,2,1,4,3]
-        set_img2page( img_num_list,11);
+        set_img2page( img_num_list,12);
 
         img_num_list2= [1,5,3,4,2,5,3,4,1,2,3,5,1,2,4,1,5,2,4,3,4,1,3,2,5,1,2,4,5,3,2,1,4,5,3,2,4,3,1,5,5,2,1,3,4,5,2,1,3,4]
         set_img2page(img_num_list2,14);
@@ -43,26 +43,47 @@ $(function(){
     ////////////////////////////////////设置汉字测试
 
         
-        function set_hanzi2page(img_num_list, page_id, prefix,suffix, format){
+        function set_hanzi2page(img_num_list, page_id, col_num, row_num, prefix,suffix, format){
             // console.log(img_num_list);
                 // img_file_list=[]
-            for (var i=0;i<=img_num_list.length;i++){ 
-                content = img_num_list[i];
-                var file_name = prefix+content+suffix;
-                // console.log(file_name);
-                // img_file_list.push(file_name);
-                var td_ele = $('#page'+page_id).find("td[numberid="+i+"]");
-                $(td_ele).html(file_name);
+            // for (var i=0;i<=img_num_list.length;i++){ 
+            //     content = img_num_list[i];
+            //     var file_name = prefix+content+suffix;
+            //     // console.log(file_name);
+            //     // img_file_list.push(file_name);
+            //     var td_ele = $('#page'+page_id).find("td[numberid="+i+"]");
+            //     $(td_ele).html(file_name);
 
+            // }
+
+            var tbody_content = '';
+            for(var i=0;i<row_num;i++){
+                var row_html = '<tr>';
+                for(var j=0;j<col_num;j++){
+                    var col_html = '<td>';
+                    var idx = (i+1)*(j+1)-1;
+
+                    col_html += prefix+img_num_list[idx]+suffix;
+                    col_html += '</td>';
+
+                    row_html+= col_html;
+                }
+
+                row_html += '</tr> ';
+
+                tbody_content += row_html;
             }
+
+             td_ele = $('#page'+page_id).find("tbody").html(tbody_content);
+
         }
         var hanzi_content = ['不','我','他','大','国','会','你','过','后','所','家','方','多','学','如','动','面','定','天','理','心','前','开','军','意','它','公','全','关','外','两','改','手','美','利','西','月','回','代','老','门','儿','东','水','真','义','入','平','气','别','打','电','目','直','命','队','展','眼','书','白','光','象','根','住','告','张','万','格','车','今','让','运']
 
-        set_hanzi2page( hanzi_content, 16,'', '','');
+        set_hanzi2page( hanzi_content, 16, 12, 6, '', '','');
 
         var hanzi_content2 = ['在','人','来','上','说','时','生','下','用','道','无','事','成','去','法','同','现','起','看','小','主','她','本','想','日','力','使','明','点','正','高','问','向','头','新','加','话','合','内','化','先','海','立','员','论','走','口','认','题','活','女','总','场','市','山','金','马','司','非','听','放','王','路','南','北','死','取','拉','领','清','带','争']
 
-        set_hanzi2page(hanzi_content2, 17, '', '','');
+        set_hanzi2page(hanzi_content2, 17, 12, 6, '', '','');
 
 
 

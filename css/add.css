@@ -1,0 +1,29 @@
+.edit_area {
+    position: absolute;
+    top: 0;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-top: 42px;
+}
+
+#inTest,.layer-box, table{
+	height: 100%;
+}
+
+.edit_area .item-group li, .edit_area>li {
+    color: #676767;
+    line-height: 1;
+    background: none;
+    position: absolute;
+    list-style: none!important;
+    margin: 0!important;
+    padding: 0;
+    transition: padding .5s;
+    min-height: 1px;
+    min-width: 1px;
+    width: 100%;
+    -webkit-user-select: none;
+}

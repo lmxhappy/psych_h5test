@@ -2,7 +2,7 @@
 function set_sentences(page_id, sentence, div_loc){
 
         var td_ele = $('#page'+page_id).find(div_loc);
-        console.log(td_ele);
+        // console.log(td_ele);
 
         
         $(td_ele).html(sentence);
@@ -78,14 +78,14 @@ function set_sentences(page_id, sentence, div_loc){
     var langdu_cur_index = 1;
 
         /**
-        @param page_list:[27,28,29]
-        @param langdu_sentences: 要显示的集合
-        @param cur_index: 现在的位置
-        @param html_loc: html位置
+        @ page_list:[27,28,29]
+        @ langdu_sentences: 要显示的集合
+        @ cur_index: 现在的位置
+         html_loc: html位置
         */
-        first = 27;
-        second = 28;
-        third = 29;
+        first = 28;
+        second = 29;
+        third = 30;
 
         // 27、28循环多次
         $(".langdu").click(function(){
