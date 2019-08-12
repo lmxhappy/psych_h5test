@@ -38,7 +38,11 @@ $(function(){
 
         img_num_list2= [1,5,3,4,2,5,3,4,1,2,3,5,1,2,4,1,5,2,4,3,4,1,3,2,5,1,2,4,5,3,2,1,4,5,3,2,4,3,1,5,5,2,1,3,4,5,2,1,3,4]
         set_img2page(img_num_list2,14);
-
+        
+        //图片点击
+        $("#imgs").find("td").click(function(){
+            $(this).css("border","2px green solid");
+        });
 
     ////////////////////////////////////设置汉字测试
 
@@ -60,7 +64,7 @@ $(function(){
             for(var i=0;i<row_num;i++){
                 var row_html = '<tr>';
                 for(var j=0;j<col_num;j++){
-                    var col_html = '<td>';
+                    var col_html = '<td align="center" valign="middle" class="">';
                     var idx = (i+1)*(j+1)-1;
 
                     col_html += prefix+img_num_list[idx]+suffix;
@@ -74,7 +78,7 @@ $(function(){
                 tbody_content += row_html;
             }
 
-             td_ele = $('#page'+page_id).find("tbody").html(tbody_content);
+             $('#page'+page_id).find("tbody").html(tbody_content);
 
         }
         var hanzi_content = ['不','我','他','大','国','会','你','过','后','所','家','方','多','学','如','动','面','定','天','理','心','前','开','军','意','它','公','全','关','外','两','改','手','美','利','西','月','回','代','老','门','儿','东','水','真','义','入','平','气','别','打','电','目','直','命','队','展','眼','书','白','光','象','根','住','告','张','万','格','车','今','让','运']
@@ -89,25 +93,46 @@ $(function(){
 
     //////////////////////////////////设置数字
         ////////////////////////////////////数字1和2/////////////////////////////////////////////////////////
-    function set_list2page(number_list, page_id){
-        for (var i=0;i<=number_list.length;i++){ 
+    // function set_list2page(number_list, page_id){
+    //     for (var i=0;i<=number_list.length;i++){ 
 
-            number = number_list[i];
-            // console.log(number);
-            var td_ele = $('#page'+page_id).find("td[numberid="+i+"]");
-            // console.log(td_ele);
+    //         number = number_list[i];
+    //         // console.log(number);
+    //         var td_ele = $('#page'+page_id).find("td[numberid="+i+"]");
+    //         // console.log(td_ele);
                 
-            $(td_ele).html(number);
+    //         $(td_ele).html(number);
 
-        }
-    }
+    //     }
+    // }
 
     number_list1 = [2,7,6,9,4,7,6,9,4,2,6,9,4,2,7,9,4,2,7,6,4,2,7,6,9,2,9,4,7,6,7,4,6,2,9,6,2,7,4,9,4,9,2,7,6,4,7,9,6,2]
-    set_list2page(number_list1, 10);
+    // set_list2page(number_list1, 10);
+    set_hanzi2page( number_list1, 10, 10, 5, '', '','');
 
 
-number_list2=[6,4,9,2,7,2,9,4,9,2,6,7,4,9,2,7,2,6,9,4,9,7,4,6,2,7,9,6,4,2,7,9,2,6,4,9,6,7,2,4,9,4,6,2,7,6,7,2,4,9]
-    set_list2page(number_list2, 13);
+    number_list2=[6,4,9,2,7,2,9,4,9,2,6,7,4,9,2,7,2,6,9,4,9,7,4,6,2,7,9,6,4,2,7,9,2,6,4,9,6,7,2,4,9,4,6,2,7,6,7,2,4,9]
+    // set_list2page(number_list2, 13);
+    set_hanzi2page( number_list1, 13, 10, 5, '', '','');
 
+    // alert("here");
+    //数字点击
+    // $(".numbers").find("td").click(function(){
+    //     console.log($(this));
+    //     alert("numbers");
+    //     $(this).addClass('green-bg');
+    // });
+
+    $('.numbers td').each(function(){
+            // alert("each");
+            $(this).click(function(){
+                // console.log($(this));
+                // alert("numbers");
+                $(this).addClass('green-bg');
+            });
+
+    });
 
 });
+
+

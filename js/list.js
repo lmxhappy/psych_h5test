@@ -104,7 +104,7 @@ class List{
     clear() {
         delete this.dataSouce;
         this.dataSouce = [];
-        tihs.listSize = 0;
+        this.listSize = 0;
         this.pos = 0;
     }
 

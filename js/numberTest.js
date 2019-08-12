@@ -10,7 +10,7 @@ var lastIdx = 0;
 
 /****================================*/
 function uploadResult(url, data){
-        console.log(data);
+        // console.log(data);
         $.ajax({
                 type: 'POST',
                 url:url,
@@ -23,20 +23,20 @@ function uploadResult(url, data){
 }
 function endUp()
 {
-	console.log("20s已经过去了");
+	// console.log("20s已经过去了");
 
 //	$("#numbers").hide();
      $('#numbers').find('td').unbind("click"); //移除click
 
 	var id = $("#id").html();
-	console.log(id);
+	// console.log(id);
 	$('#numbers').find('td').dblclick(function(){
 		
                 $(this).siblings().css("border-right", "0px none rgb(51, 51, 51)");
                 $(this).css("border-right", "1px solid black");
 		numberid = $(this).attr("numberid");
 		lastIdx = numberid;
-		console.log(numberid);
+		// console.log(numberid);
 		
 		var data = {"id":id,"lastIdx":lastIdx};
 		uploadResult(idxUrl, data);
@@ -44,16 +44,16 @@ function endUp()
 	curSec();
 
 	var user = GetUrlParms('user');
-	console.log(user);
+	// console.log(user);
 	var data = {"id":id,"lastIdx":lastIdx,"choice":JSON.stringify(choice), 'user':user};
 	//var data = {"id":id,"lastIdx":lastIdx,"choice":choice, 'user':user};
-	console.log(data);
+	// console.log(data);
 
 	uploadResult(paramUrl, data);
 	
 
 
-	console.log(location.href);
+	// console.log(location.href);
 	$("#begin").show();
 	var times = GetUrlParms('times');
 	//alert(typeof times);
@@ -75,7 +75,7 @@ function endUp()
         		//var url = $('#beginhref').attr('href');
         		//console.log(url);
         		var newHref='/Index/Speed/option/user/'+user+'/desc/'+desc+'/times/'+times;
-        		console.log(newHref);
+        		// console.log(newHref);
         		$('#beginhref').attr('href', newHref);
 		}
 		//$("#begin").children("a").attr("href", "/Index/Speed/option/times");
@@ -84,7 +84,7 @@ function endUp()
 }
 
 function sound(dtd){
-	console.log(dtd);
+	// console.log(dtd);
 	playSound(soundFile);
 }
 
@@ -98,7 +98,7 @@ function tests()
 /**真的开始试验了*/
 function continueAction()
 {
-	console.log("in continueAction");
+	// console.log("in continueAction");
 	$("#target").hide();
 
 	curSec();
@@ -127,11 +127,19 @@ function numberTest(){
 	
 }
 $(function(){
-		/**选择数字*/
-	$('#numbers').find('td').click(function(){
+
+	 
+
+	/**选择数字*/
+	$('.numbers').find('td').click(function(){
+			// alert("Testddd");
+			//增加绿色北京
+			// $(this).addClass('green-bg');
+
 			var num = $(this).html();
-			$(this).css("text-decoration", "line-through");
-			
+			// $(this).css("text-decoration", "line-through");
+			$(this).css("background-color", " green");
+
 			//就是给出随机数字数组的偏移量
 			var numberId = $(this).attr('numberId');
 			console.log(numberId);
@@ -139,13 +147,13 @@ $(function(){
 		
 			//防止多次点击，多次存入
 			var ret = $.inArray(numberId, choice);
-			console.log(ret);
+			// console.log(ret);
 			//不在，才插入
 
 			if(ret == -1){
 				choice.push(numberId);
 			}
-			console.log(choice);
+			// console.log(choice);
 			
 	}); 
 

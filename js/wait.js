@@ -60,3 +60,10 @@ function waitForUserChoice(choiceWindowTime)
 	wait(choiceWindowTime)
 		.done(endUp);
 }
+// 堵塞
+function sleep(delay) {
+  var start = (new Date()).getTime();
+  while ((new Date()).getTime() - start < delay) {
+    continue;
+  }
+}
