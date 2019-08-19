@@ -49,7 +49,8 @@ function endUp()
 	//var data = {"id":id,"lastIdx":lastIdx,"choice":choice, 'user':user};
 	// console.log(data);
 
-	uploadResult(paramUrl, data);
+//    省事起见，暂时不上传数据了，最后一次性上传数据
+//	uploadResult(paramUrl, data);
 	
 
 

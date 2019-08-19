@@ -87,10 +87,15 @@ function getNextPageId()
     
     return    next_page_id;
 }
+function showPage(pageId){
+        $('#page'+pageId).parent().addClass("z-current");
+        $('#page'+pageId).find("li").show();
+
+        cur_page_list_index = page_id_list.indexOf(pageId);
+}
 $(function(){
 
-        $('#page1').parent().addClass("z-current");
-        $('#page1').find("li").show();
+        showPage(1);
 
         var ele = $('#nr').find("li[ctype='7']");
         ele.css("width", "100%");

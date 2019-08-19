@@ -31,3 +31,17 @@
 .green-bg{
 	background-color: green;
 }
+
+.title {
+    top:0px;
+    align:center;
+    text-align: center;
+
+}
+.jieshao_content{
+    top:58px;
+}
+
+.jieshao_next_button{
+    bottom: 50px; right: 27px;
+}

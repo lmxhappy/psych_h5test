@@ -11,6 +11,7 @@ function set_sentences(page_id, sentence, div_loc){
 }
 
 
+$(function(){
     ///////////////////////////////////////默读///////////////////////////////////////////////////
         ///////////////////////////////////////默读练习/////////////////////////
 
@@ -68,6 +69,15 @@ function set_sentences(page_id, sentence, div_loc){
 
     next_page_id = 25;
     $(".modu").click(function(){
+
+        var result = $(this).attr('result');
+        var td_ele = $('#page23').find("#modu-content");
+        var modu_content = $(td_ele).html();
+
+        collector.push2Modu(modu_content, result);
+        console.log(collector);
+        console.log('默读');
+
         // alert("ddffd========");
         // 下一页
         // 跳出这个循环，进入循环后的下一页——25页
@@ -123,8 +133,15 @@ function set_sentences(page_id, sentence, div_loc){
         // alert("ddffd========");
         // console.log(langdu_sentences);
 
+        var result = $(this).attr('result');
+        var td_ele = $('#page28').find("#langdu-content");
+        var modu_content = $(td_ele).html();
 
-        console.log("句子已经显示完了");
+        collector.push2Langdu(modu_content, result);
+        console.log(collector);
+        console.log('朗读');
+
+//        console.log("句子已经显示完了");
 
         $("#page"+second).parent().removeClass("z-current");
         $("#page"+second).find("li").hide();
@@ -151,3 +168,4 @@ function set_sentences(page_id, sentence, div_loc){
 
     });
 
+});

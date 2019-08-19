@@ -35,6 +35,10 @@ $(function(){
         $("#page"+next_ele_id).parent().addClass("z-current");
         $("#page"+next_ele_id).find("li").show();
 
+        var this_id = $(this).attr('id');
+        collector.setEval(this_id, list.toString());
+
+
         list.clear();
         //提交数据
     });
