@@ -33,7 +33,21 @@ $(function(){
         //跳出这个循环，进入循环后的下一页——22页
         if(test_cur_index >= modu_test_sentences.length){
                     // test_next_page_id = 22;
-                    test_next_page_id = getNextPageId();
+//                    test_next_page_id = getNextPageId();
+                    var next_ins = getNextPageId();
+                    var next_ele_id = 0;
+                    if(typeof(next_ins)==="object"){
+                        alert('object');
+                        next_ele_id = next_ins[0];
+                        callback_func = next_ins[1];
+                        callback_func();
+                    }else{
+                        next_ele_id = next_ins;
+                    }
+
+                    console.log(next_ele_id);
+                    test_next_page_id= next_ele_id;
+
                     $("#page21").parent().removeClass("z-current");
                     $("#page21").find("li").hide();
                     $("#page"+test_next_page_id).parent().addClass("z-current");
@@ -53,7 +67,7 @@ $(function(){
         //主进度条，后退一格
         cur_page_list_index--;
 
-        set_sentences(20, modu_test_sentences[cur_index], "#modu-test-content");
+        set_sentences(20, modu_test_sentences[test_cur_index], "#modu-test-content");
         test_cur_index +=1;
     });
 
@@ -106,6 +120,61 @@ $(function(){
         cur_index +=1;
     });
       ///////////////////////////////////////默读///////////////////////////////////////////////////
+          ///////////////////////////////////////朗读练习/////////////////////////
+
+    // 这是替换的。原来是有显示的
+    langdu_test_sentences = ['土豆是黄色的','叔叔在南极拍了很多绿色植物的照片'];
+
+    // 下一个要显示的index
+    langdu_test_cur_index = 1;
+
+
+    // 对错的两个按钮绑定click事件。
+    //32、33组成一个loop，两次loop
+    //跳出这个循环
+    $(".langdu_test").click(function(){
+        // alert("dfdf");
+
+
+        //跳出这个循环，进入循环后的下一页——22页
+        if(langdu_test_cur_index >= langdu_test_sentences.length){
+                    // test_next_page_id = 22;
+//                    test_next_page_id = getNextPageId();
+                     var next_ins = getNextPageId();
+                    var next_ele_id = 0;
+                    if(typeof(next_ins)==="object"){
+                        alert('object');
+                        next_ele_id = next_ins[0];
+                        callback_func = next_ins[1];
+                        callback_func();
+                    }else{
+                        next_ele_id = next_ins;
+                    }
+
+                    test_next_page_id= next_ele_id;
+                    console.log('朗读练习'+test_next_page_id);
+                    $("#page33").parent().removeClass("z-current");
+                    $("#page33").find("li").hide();
+                    $("#page"+test_next_page_id).parent().addClass("z-current");
+                    $("#page"+test_next_page_id).find("li").show();
+                    return;
+
+        }
+
+        console.log("句子已经显示完了");
+        $("#page33").parent().removeClass("z-current");
+        $("#page33").find("li").hide();
+
+        $("#page32").parent().addClass("z-current");
+        $("#page32").find("li").show();
+
+
+        //主进度条，后退一格
+        cur_page_list_index--;
+
+        set_sentences(32, langdu_test_sentences[langdu_test_cur_index], "#langdu-test-content");
+        langdu_test_cur_index +=1;
+    });
         ///////////////////////////////////////朗读正式/////////////////////////
   // 这是替换的。原来是有显示的
     // langdu_sentences = ['这只鸵鸟飞的很高','天气晴朗,适合去公园游玩', '的地方打发算法算法','地方打发方法------'];
