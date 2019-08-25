@@ -37,7 +37,7 @@ $(function(){
                     var next_ins = getNextPageId();
                     var next_ele_id = 0;
                     if(typeof(next_ins)==="object"){
-                        alert('object');
+//                        alert('object');
                         next_ele_id = next_ins[0];
                         callback_func = next_ins[1];
                         callback_func();
@@ -143,7 +143,7 @@ $(function(){
                      var next_ins = getNextPageId();
                     var next_ele_id = 0;
                     if(typeof(next_ins)==="object"){
-                        alert('object');
+//                        alert('object');
                         next_ele_id = next_ins[0];
                         callback_func = next_ins[1];
                         callback_func();

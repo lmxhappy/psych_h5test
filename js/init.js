@@ -69,7 +69,8 @@ function hideVoidPage(){
 
 // 10数字，12图，13数字，14图
 //27是朗读的说明页面，后面要跟page0（1秒的空屏）,18是一个介绍
-page_id_list =[1,2,3,4,5,6,7,8,9,0,10,11,0, 12,0, 13,0, 14,15,16,17,18,19,20,21,22,23,24,25,26,27,0,32,33,[18, langdu_callback], 28,29,30,31]
+// 20、21默读练习，前面是page0，后面是page18
+page_id_list =[1,2,3,4,5,6,7,8,9,0,10,11,0, 12,0, 13,0, 14,15,16,17,18,19,0,20,21,[18, modu_callback],23,24,25,26,27,0,32,33,[18, langdu_callback], 28,29,30,31]
 cur_page_list_index = 1;
 
 //默认20秒
@@ -96,10 +97,12 @@ function showPage(pageId){
 }
 
 function langdu_callback(){
-    $("#page18").find("span").html("练习结束，请点击开始，进入正式实验。");
-    alert("langdu_callback");
+    $('#page18 li[ctype="7"] span').html("练习结束，请点击开始，进入正式实验。");
 }
 
+function modu_callback(){
+    langdu_callback();
+}
 
 $(function(){
 
@@ -115,7 +118,7 @@ $(function(){
             var next_ins = getNextPageId();
             var next_ele_id = 0;
             if(typeof(next_ins)==="object"){
-                alert('object');
+//                alert('object');
                 next_ele_id = next_ins[0];
                 callback_func = next_ins[1];
                 callback_func();
