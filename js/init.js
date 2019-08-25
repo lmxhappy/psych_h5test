@@ -10,7 +10,7 @@ function go_next_page(this_ele_id){
 
             var next_ele_id = 0;
             if(typeof(next_ins)==="object"){
-                alert('object');
+//                alert('object');
                 next_ele_id = next_ins[0];
                 callback_func = next_ins[1];
                 callback_func();
@@ -180,7 +180,7 @@ $(function(){
 
             var next_ele_id = 0;
             if(typeof(next_ins)==="object"){
-                alert('object');
+//                alert('object');
                 next_ele_id = next_ins[0];
                 callback_func = next_ins[1];
                 callback_func();
@@ -199,7 +199,7 @@ $(function(){
                 case 0:
                     $("#page0").parent().addClass("z-current");
                     $("#page0").find("li").show();
-                    alert("0");
+//                    alert("0");
                     control(next_ele_id, 1,1000);
                     break;
                  case 10:
