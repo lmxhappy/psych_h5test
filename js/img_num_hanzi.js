@@ -173,29 +173,41 @@ $(function(){
                          console.log("数字1");
                          console.log(collector);
                          collector.setNumRead1(index, word)  ;
+
+                         go_next_page(10);
+
                          break;
                      case 13:
                         console.log("数字2");
                         collector.setNumRead2(index, word);
+
+                        control(13, 1, 1000);
                         break;
                      case 16:
                           console.log("汉字1");
                           collector.setwordRead1(index, word);
+
+                          go_next_page(16);
                           break;
                      case 17:
                           console.log("汉字2");
                           collector.setwordRead1(index, word);
+
+                          go_next_page(17);
                           break;
                      case 12:
                           console.log("图1");
                           collector.setPicRead1(index, word);
 
-                            break;
+                          go_next_page(12);
+                          break;
                      case 14:
-                            console.log("图2");
-                            collector.setPicRead2(index, word);
+                          console.log("图2");
+                          collector.setPicRead2(index, word);
 
-                            break;
+                          go_next_page(14);
+
+                          break;
                 }
             });
 
