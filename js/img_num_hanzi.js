@@ -181,7 +181,8 @@ $(function(){
                         console.log("数字2");
                         collector.setNumRead2(index, word);
 
-                        control(13, 1, 1000);
+//                        control(13, 1, 1000);
+                        go_next_page(13);
                         break;
                      case 16:
                           console.log("汉字1");

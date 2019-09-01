@@ -100,7 +100,7 @@ function hideVoidPage(){
 //27是朗读的说明页面，后面要跟page0（1秒的空屏）,18是一个介绍
 // 20、21默读练习，前面是page0，后面是page18
 //12后面要第二个读数测试，要有一个说明页面，所以插入18
-page_id_list =[1,2,3,4,5,6,7,8,9,0,10,11,0, [12, pic_control_callback],[18, numberRead2_callback_func],0, 13,[18,pic2_explain_callback],0, 14,15,16,[18,wordRead2_callback],17,[18,finish_first_test],19,0,20,21,[18, modu_callback],23,24,25,26,27,0,32,33,[18, langdu_callback], 28,29,30,31]
+page_id_list =[1,2,3,4,5,6,7,8,9,0,10,11,0, [12, pic_control_callback],[18, numberRead2_callback_func],0, 13,[18,pic2_explain_callback],0, 14,15,16,[18,wordRead2_callback],17,[18,finish_first_test],19,0,20,21,[18, modu_callback],23,24,25,26,27,0,32,33,[18, langdu_callback], 28,29,30,31,34]
 cur_page_list_index = 1;
 
 //默认20秒
@@ -119,6 +119,24 @@ function getNextPageId()
     
     return    next_page_id;
 }
+
+function getComplexNextPageId()
+{
+    var next_ins = getNextPageId();
+            console.log(next_ins);
+            var next_ele_id = 0;
+            if(typeof(next_ins)==="object"){
+//                alert('object');
+                next_ele_id = next_ins[0];
+                callback_func = next_ins[1];
+                callback_func();
+            }else{
+                next_ele_id = next_ins;
+            }
+
+      return next_ele_id;
+}
+
 function showPage(pageId){
         $('#page'+pageId).parent().addClass("z-current");
         $('#page'+pageId).find("li").show();
@@ -162,7 +180,7 @@ function wordRead2_callback(){
 
 $(function(){
 
-        showPage(1);
+        showPage(30);
 
         var ele = $('#nr').find("li[ctype='7']");
         ele.css("width", "100%");
@@ -227,7 +245,7 @@ $(function(){
                 case 16:
                     choiceWindowTime = 20000;
 
-                    alert("16");
+//                    alert("16");
                     control(next_ele_id, 2, choiceWindowTime);
 
                  default:

@@ -25,8 +25,8 @@ $(function(){
         // console.log(pageId);
 
          ele_id = parseInt(pageId.substr(4));
-        var next_ele_id =ele_id+1;
-
+//        var next_ele_id =ele_id+1;
+        var next_ele_id = getComplexNextPageId();
         // console.log(next_ele_id);
 
         $("#page"+ele_id).parent().removeClass("z-current");
