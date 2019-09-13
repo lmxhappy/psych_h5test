@@ -180,7 +180,7 @@ function wordRead2_callback(){
 
 $(function(){
 
-        showPage(30);
+        showPage(1);
 
         var ele = $('#nr').find("li[ctype='7']");
         ele.css("width", "100%");

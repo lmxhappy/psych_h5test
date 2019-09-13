@@ -1,13 +1,11 @@
 
+//设置页面某个元素的html
 function set_sentences(page_id, sentence, div_loc){
 
         var td_ele = $('#page'+page_id).find(div_loc);
         // console.log(td_ele);
 
-        
         $(td_ele).html(sentence);
-
-    
 }
 
 
@@ -78,6 +76,8 @@ $(function(){
     modu_sentences = ['牛顿发明了电灯','十月一号是国庆节','香蕉和菠菜都是水果','中国国旗是五星红旗','中国和美国是相邻的','课本大多数是纸质的','小鸡用四条腿在地上跑','金鱼摇摆尾巴在水里游','山羊最喜欢吃新鲜的竹子','天上的大雁排成了人字形','丁丁正在用小刀削自动铅笔','夏天田地里很多青蛙在叫','早晨,太阳从西边的群山间升起','春节是个合家团圆的日子','这河水很脏,能看清河底的石块','夜晚,湖面倒映着月亮的影子','他今天生日,妈妈给他买了块月饼','乐乐的小狗看到陌生人会狂叫','乌云密布,妈妈准备把被子拿出去晒晒','打雷了,不久就响起哗啦啦的雨点声','大家一边吃着元宵,一边欣赏着天上的月牙','端午节时,超市开始卖各式各样的粽子','这件男孩衣服真好看,尤其是裙子上的花边格外漂亮','大家都说新发的校服好看,女生裙子的颜色漂亮'];
     modu_sentences = randomList(modu_sentences);
 
+    set_sentences(23, modu_sentences[0], "#modu-content");
+
     // 下一个要显示的index
     cur_index = 1;
 
@@ -88,6 +88,7 @@ $(function(){
         var td_ele = $('#page23').find("#modu-content");
         var modu_content = $(td_ele).html();
 
+//        收集显示和答题结果
         collector.push2Modu(modu_content, result);
         console.log(collector);
         console.log('默读');
@@ -194,6 +195,8 @@ $(function(){
     first = 28;//click进入的，通过click事件进入的
     second = 29;//自动进入的。折返回28，从而形成一个循环
     third = 30;
+
+   set_sentences(first, langdu_sentences[0], "#langdu-content");
 
     // 27、28循环多次
     //这是对28的一个截流，这返回头部
