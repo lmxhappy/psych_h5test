@@ -100,16 +100,21 @@ function hideVoidPage(){
 //27是朗读的说明页面，后面要跟page0（1秒的空屏）,18是一个介绍
 // 20、21默读练习，前面是page0，后面是page18
 //12后面要第二个读数测试，要有一个说明页面，所以插入18
-page_id_list =[1,2,3,4,5,6,7,8,9,0,10,11,0, [12, pic_control_callback],[18, numberRead2_callback_func],0, 13,[18,pic2_explain_callback],0, 14,15,16,[18,wordRead2_callback],17,[18,finish_first_test],19,0,20,21,[18, modu_callback],23,24,25,26,27,0,32,33,[18, langdu_callback], 28,29,30,31,34]
-cur_page_list_index = 1;
+page_id_list =[1,2,3,4,5,6,7,8,9,0,10,11,0, [12, pic_control_callback],[18, numberRead2_callback_func],0, 13,[18,pic2_explain_callback],0, 14,15,16,[18,wordRead2_callback],17,[18,finish_first_test],19,0,20,21,[18, modu_callback],23,24,25,26,27,0,32,33,[18, langdu_callback], 28,29,30,31,34];
+
+//当前显示的是index是0的，即page1，所以下一个是index为1的page
+var cur_page_list_index = 1;
+console.log(cur_page_list_index);
 
 //默认20秒
 default_show_time = 20000;
-page_show_time_dict = {0:1000, 10:20000, 11:20000, 12:20000, 13:20000, 14:20000}
+page_show_time_dict = {0:1000, 10:20000, 11:20000, 12:20000, 13:20000, 14:20000};
 
 
 function getNextPageId()
 {
+    console.log(cur_page_list_index);
+
     if(cur_page_list_index>=page_id_list.length){
         return -1;
     }
@@ -141,7 +146,9 @@ function showPage(pageId){
         $('#page'+pageId).parent().addClass("z-current");
         $('#page'+pageId).find("li").show();
 
-        cur_page_list_index = page_id_list.indexOf(pageId);
+        this_page_index = page_id_list.indexOf(pageId);
+        cur_page_list_index = this_page_index+1;
+        console.log(cur_page_list_index);
 }
 
 function langdu_callback(){
@@ -185,8 +192,27 @@ $(function(){
         var ele = $('#nr').find("li[ctype='7']");
         ele.css("width", "100%");
 
+        $('#nr').find("li[ctype='p']").click(function(){
+            //获得当前显示的页面的id
+            var ele_id = $(this).parents(".m-img").attr('id');
+            ele_id = parseInt(ele_id.substr(4));
+
+
+            $("#page"+ele_id).parent().removeClass("z-current");
+            $("#page"+ele_id).find("li").hide();
+
+            var next_ele_id = ele_id-1;
+
+            $("#page"+next_ele_id).parent().addClass("z-current");
+            $("#page"+next_ele_id).find("li").show();
+
+            cur_page_list_index--;
+        });
+
+
         //以下代码是往前（下一个页面走）
         $('#nr').find("li[ctype='l']").click(function(){
+            //获得当前显示的页面的id
           var ele_id = $(this).parents(".m-img").attr('id');
             ele_id = parseInt(ele_id.substr(4));
             // var next_ele_id =ele_id+1;
@@ -208,11 +234,11 @@ $(function(){
 //            console.log(next_ele_id);
             console.log("next_ele_id:"+next_ele_id);
 
-            li_id = $(this).attr('id');
-            if(li_id == 'inside_9701325528'){
-                var next_ele_id =ele_id-1;
-
-            }
+//            li_id = $(this).attr('id');
+//            if(li_id == 'inside_9701325528'){
+//                var next_ele_id =ele_id-1;
+//
+//            }
             switch(next_ele_id) {
                 case 0:
                     $("#page0").parent().addClass("z-current");
