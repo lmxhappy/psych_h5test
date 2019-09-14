@@ -185,6 +185,63 @@ function wordRead2_callback(){
 
 }
 
+function continue_next_page(this_ele){
+        //获得当前显示的页面的id
+            var ele_id = $(this_ele).parents(".m-img").attr('id');
+            ele_id = parseInt(ele_id.substr(4));
+
+            $("#page"+ele_id).parent().removeClass("z-current");
+            $("#page"+ele_id).find("li").hide();
+
+            var next_ins = getNextPageId();
+            console.log(next_ins);
+
+            var next_ele_id = 0;
+            if(typeof(next_ins)==="object"){
+//                alert('object');
+                next_ele_id = next_ins[0];
+                callback_func = next_ins[1];
+                callback_func();
+            }else{
+                next_ele_id = next_ins;
+            }
+            console.log("next_ele_id:"+next_ele_id);
+
+            switch(next_ele_id) {
+                case 0:
+                    $("#page0").parent().addClass("z-current");
+                    $("#page0").find("li").show();
+//                    alert("0");
+                    control(next_ele_id, 1,1000);
+                    break;
+                 case 10:
+                    // 第一次显示数字
+
+                    //空屏
+                    // console.log('空屏前');
+                    // pipeline(10, showVoidPage, hideVoidPage);
+                    // console.log("空屏后");
+
+                    choiceWindowTime = 20000;
+
+                    $("#page"+next_ele_id).parent().addClass("z-current");
+                    $("#page"+next_ele_id).find("li").show();
+                    alert("10");
+                    control(next_ele_id, 1, choiceWindowTime);
+                    break;
+
+                case 16:
+                    choiceWindowTime = 20000;
+
+                    control(next_ele_id, 2, choiceWindowTime);
+                    break;
+                 default:
+                    $("#page"+next_ele_id).parent().addClass("z-current");
+                    $("#page"+next_ele_id).find("li").show();
+                    break;
+            }
+}
+
 $(function(){
 
         showPage(1);
@@ -209,77 +266,24 @@ $(function(){
             cur_page_list_index--;
         });
 
-
+//        $('#nr').find("button[type='submit']").click(function(){
+//            alert("dfdfd");
+//        });
         //以下代码是往前（下一个页面走）
-        $('#nr').find("li[ctype='l']").click(function(){
-            //获得当前显示的页面的id
-          var ele_id = $(this).parents(".m-img").attr('id');
-            ele_id = parseInt(ele_id.substr(4));
-            // var next_ele_id =ele_id+1;
-            var next_ins = getNextPageId();
-            console.log(next_ins);
-            
-            $("#page"+ele_id).parent().removeClass("z-current");
-            $("#page"+ele_id).find("li").hide();
-
-            var next_ele_id = 0;
-            if(typeof(next_ins)==="object"){
-//                alert('object');
-                next_ele_id = next_ins[0];
-                callback_func = next_ins[1];
-                callback_func();
-            }else{
-                next_ele_id = next_ins;
-            }
-//            console.log(next_ele_id);
-            console.log("next_ele_id:"+next_ele_id);
-
-//            li_id = $(this).attr('id');
-//            if(li_id == 'inside_9701325528'){
-//                var next_ele_id =ele_id-1;
-//
-//            }
-            switch(next_ele_id) {
-                case 0:
-                    $("#page0").parent().addClass("z-current");
-                    $("#page0").find("li").show();
-//                    alert("0");
-                    control(next_ele_id, 1,1000);
-                    break;
-                 case 10:
-                    // 第一次显示数字
-
-                    //空屏
-                    // console.log('空屏前');
-                    // pipeline(10, showVoidPage, hideVoidPage);
-                    // console.log("空屏后");
-
-                    choiceWindowTime = 20000;
-     
-                    $("#page"+next_ele_id).parent().addClass("z-current");
-                    $("#page"+next_ele_id).find("li").show();
-                    alert("10");
-                    control(next_ele_id, 1, choiceWindowTime);
-                    break;
-//                 case 12:
-//                    //图片、数字、图片
-//
-//                    // sleep(1000);
-//                    choiceWindowTime = 20000;
-//                    control(next_ele_id, 1, choiceWindowTime);
-//                    break;
-                case 16:
-                    choiceWindowTime = 20000;
-
-//                    alert("16");
-                    control(next_ele_id, 2, choiceWindowTime);
-
-                 default:
-//                    alert("default");
-                    
-                    $("#page"+next_ele_id).parent().addClass("z-current");
-                    $("#page"+next_ele_id).find("li").show();
-                    break;
-            } 
+        $('#nr').find("li[ctype='l']").click(function(){ //,button[type='submit']
+            continue_next_page(this);
         });
+
+
+
+
+//         $('#nr').find("button[type='submit']").click(function(e){ //,
+//
+//
+//                                  e.preventDefault();
+//                                  event.stopPropagation();
+//
+//            continue_next_page(this);
+//        });
+
 });
