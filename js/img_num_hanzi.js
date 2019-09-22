@@ -68,12 +68,15 @@ $(function(){
         suffix = '">';
 
         set_hanzi2page( img_file_list, 12, 10, 5, prefix, suffix,'');
+//        为了选择的一个页面
+        set_hanzi2page( img_file_list, 121, 10, 5, prefix, suffix,'');
 
         img_num_list2= [1,5,3,4,2,5,3,4,1,2,3,5,1,2,4,1,5,2,4,3,4,1,3,2,5,1,2,4,5,3,2,1,4,5,3,2,4,3,1,5,5,2,1,3,4,5,2,1,3,4]
 
         img_file_list2 = num2filename(img_num_list2);
         set_hanzi2page(img_file_list2,14, 10, 5, prefix, suffix, '');
-        
+        set_hanzi2page(img_file_list2,141, 10, 5, prefix, suffix, '');
+
         //图片点击
 //        $("#imgs").find("td").click(function(){
 //            $(this).css("border","2px green solid");
@@ -89,7 +92,7 @@ $(function(){
                 for(var j=0;j<col_num;j++){
                     var idx = (i+1)*(j+1)-1;
 
-                    var col_html = '<td align="center" valign="middle" idx ='+idx+' class="">';
+                    var col_html = '<td align="center" valign="middle" idx ='+idx+' class="" style="">';
 
                     col_html += prefix+img_num_list[idx]+suffix;
                     col_html += '</td>';
@@ -133,11 +136,13 @@ $(function(){
     number_list1 = [2,7,6,9,4,7,6,9,4,2,6,9,4,2,7,9,4,2,7,6,4,2,7,6,9,2,9,4,7,6,7,4,6,2,9,6,2,7,4,9,4,9,2,7,6,4,7,9,6,2]
     // set_list2page(number_list1, 10);
     set_hanzi2page( number_list1, 10, 10, 5, '', '','');
+    set_hanzi2page( number_list1, 101, 10, 5, '', '','');
 
 
     number_list2=[6,4,9,2,7,2,9,4,9,2,6,7,4,9,2,7,2,6,9,4,9,7,4,6,2,7,9,6,4,2,7,9,2,6,4,9,6,7,2,4,9,4,6,2,7,6,7,2,4,9]
     // set_list2page(number_list2, 13);
     set_hanzi2page( number_list1, 13, 10, 5, '', '','');
+    set_hanzi2page( number_list1, 131, 10, 5, '', '','');
 
     // alert("here");
     //数字点击
@@ -147,23 +152,12 @@ $(function(){
     //     $(this).addClass('green-bg');
     // });
 
-    //数字、汉字
-    $('.numbers td').each(function(){
-            // alert("each");
-            $(this).click(function(){
-                // console.log($(this));
-                // alert("numbers");
-                $(this).addClass('green-bg');
-                $(this).css("border","2px green solid");
+   function number_click_func(this_ele){
+                var ele_id = $(this_ele).parents(".m-img").attr('id');
+                var index = $(this_ele).attr('idx');
+                var word = $(this_ele).html();
 
-                var ele_id = $(this).parents(".m-img").attr('id');
-
-
-
-                var index = $(this).attr('idx');
-                var word = $(this).html();
-
-                console.log($(this));
+                console.log($(this_ele));
                 ele_id = ele_id.substr(4);
                 ele_id = parseInt(ele_id);
                 console.log(ele_id+' '+index+' '+word);
@@ -174,8 +168,10 @@ $(function(){
                          console.log(collector);
                          collector.setNumRead1(index, word)  ;
 
-                         go_next_page(10);
-
+//                         go_next_page(10);
+                            choiceWindowTime = 20000;
+                          control(10, 1, choiceWindowTime);
+                    break;
                          break;
                      case 13:
                         console.log("数字2");
@@ -210,9 +206,41 @@ $(function(){
 
                           break;
                 }
-            });
+   }
 
-    });
+
+
+
+
+    function addClickEvent(){
+
+         //数字、汉字
+        $('.numbers_click td').each(function(){
+                // alert("each");
+                $(this).click(function(){
+                    // console.log($(this));
+//                     alert("numbers");
+
+                     $(this).addClass('green-bg');
+                     $(this).css("border","2px green solid");
+
+
+
+    //                pipeline(1000, addGreen, number_click_func(this));
+
+    //                //阻塞1秒钟
+                    sleep(1000);
+
+                     $('.numbers td').unbind("click"); //移除click
+
+                    number_click_func(this);
+
+                });
+
+        });
+    }
+
+    addClickEvent();
 
 });
 
