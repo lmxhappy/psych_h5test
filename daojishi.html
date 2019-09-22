@@ -1,0 +1,26 @@
+<html>
+<body>
+        <input type="button" value="click" id="click" onclick="foo(this, 10000);"/>
+
+</body>
+
+<script>
+function foo(obj, time) {
+    obj.disabled = true;
+
+    timeout_time = time-10000;
+    alert(timeout_time);
+    setTimeout(function() {
+        var x = setInterval(function(){
+                time= time - 1000; //reduce each second
+                obj.value = (time/1000)%60;
+                if(time==0){
+                        clearInterval(x);
+                        obj.value = "retry";
+                        obj.disabled = false;
+                }
+        }, 1000);
+    }, timeout_time);
+}
+</script>
+</html>

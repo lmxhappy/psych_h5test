@@ -122,11 +122,18 @@ function numberTest(){
 
 	//setTimeout(sound,18000);
 	setTimeout("sound(dtd)",soundTime);
-
-	
-				
-	
 }
+
+function numberTest2(){
+	curSec();
+
+	var dtd = $.Deferred(); // 新建一个deferred对象
+
+
+	//setTimeout(sound,18000);
+	setTimeout("sound(dtd)",soundTime);
+}
+
 $(function(){
 
 	 

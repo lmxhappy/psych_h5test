@@ -20,7 +20,54 @@ function go_next_page(this_ele_id){
              $("#page"+next_ele_id).parent().addClass("z-current");
             $("#page"+next_ele_id).find("li").show();
             console.log("正在展示第"+next_ele_id+"页");
+
+
+            return next_ele_id;
 }
+
+
+// num 就是1个页面；2就是两个页面；
+function control_show(this_ele_id, num){
+
+    //从9页跳转到0页
+    var next_ele_id = null;
+    var task1 = function(){
+         go_next_page(this_ele_id);
+    };
+
+    task_list = [];
+    nextPageList = listNextPageId(num);
+    console.log(nextPageList);
+    for(var i = 0;i<nextPageList.length;i++){
+        next_ele_id = nextPageList[i];
+
+        var task = function(this_ele_id, next_ele_id){
+            //1 隐藏本页
+            $("#page"+this_ele_id).parent().removeClass("z-current");
+            $("#page"+this_ele_id).find("li").hide();
+
+             $("#page"+next_ele_id).parent().addClass("z-current");
+            $("#page"+next_ele_id).find("li").show();
+        };
+
+        console.log(task);
+
+        var task_time = next_ele_id in page_show_time_dict?page_show_time_dict[next_ele_id]:default_show_time;
+
+        task_list.push([task, this_ele_id, next_ele_id, task_time]);
+
+        this_ele_id = next_ele_id;
+
+    }
+
+     console.log(JSON.stringify(task_list));
+     dotasks(task_list);
+
+//     移动一下当前指针
+     goNstep(nextPageList.length);
+}
+
+
 // num 就是1个页面；2就是两个页面；
 function control(this_ele_id, num, timelen){
     console.log(timelen);
@@ -35,13 +82,29 @@ function control(this_ele_id, num, timelen){
             if(num <=1){
                 return;
             }{
-                // 毫秒数
-                page_show_time = tmp_id in page_show_time_dict?page_show_time_dict[tmp_id]:default_show_time;
-                if(tmp_id==0&& num-1<2)
-                {
-                    num=3;
+
+
+                var next_ins = getNextPageId();
+                console.log(next_ins);
+
+                var next_ele_id = 0;
+                if(typeof(next_ins)==="object"){
+    //                alert('object');
+                    next_ele_id = next_ins[0];
+                    callback_func = next_ins[1];
+                    callback_func();
+                }else{
+                    next_ele_id = next_ins;
                 }
-                control(tmp_id, num-1, page_show_time);
+
+                // 毫秒数
+                page_show_time = next_ele_id in page_show_time_dict?page_show_time_dict[tmp_id]:default_show_time;
+                if(next_ele_id==0)
+                {
+                    page_show_time=1000;
+                }
+
+                control(next_ele_id, num-1, page_show_time);
             }
 
             
@@ -100,7 +163,8 @@ function hideVoidPage(){
 //27是朗读的说明页面，后面要跟page0（1秒的空屏）,18是一个介绍
 // 20、21默读练习，前面是page0，后面是page18
 //12后面要第二个读数测试，要有一个说明页面，所以插入18
-page_id_list =[1,2,3,4,5,6,7,8,9,0,10,11,0, [12, pic_control_callback],[18, numberRead2_callback_func],0, 13,[18,pic2_explain_callback],0, 14,15,16,[18,wordRead2_callback],17,[18,finish_first_test],19,0,20,21,[18, modu_callback],23,24,25,26,27,0,32,33,[18, langdu_callback], 28,29,30,31,34];
+// 10、101是第一次数字，前者显示用，后者点选用。
+page_id_list =[1,2,3,4,5,6,7,8,9,0,10,101, 11,0, 12,121,[18, numberRead2_callback_func],0, 13,131, [18,pic2_explain_callback],0, 14,141, 15,16,[18,wordRead2_callback],17,[18,finish_first_test],19,0,20,21,[18, modu_callback],23,24,25,26,27,0,32,33,[18, langdu_callback], 28,29,30,31,34];
 
 //当前显示的是index是0的，即page1，所以下一个是index为1的page
 var cur_page_list_index = 1;
@@ -108,23 +172,59 @@ console.log(cur_page_list_index);
 
 //默认20秒
 default_show_time = 20000;
-page_show_time_dict = {0:1000, 10:20000, 11:20000, 12:20000, 13:20000, 14:20000};
+page_show_time_dict = {0:1000, 10:10000, 11:20000, 12:20000, 13:10000, 14:20000};
 
+//往后走了n步
+function goNstep(num){
+    cur_page_list_index += num;
 
+}
+//有副作用
 function getNextPageId()
 {
-    console.log(cur_page_list_index);
+//    console.log(cur_page_list_index);
 
     if(cur_page_list_index>=page_id_list.length){
         return -1;
     }
 
-    next_page_id = page_id_list[cur_page_list_index];
     cur_page_list_index +=1;
-    
+     next_page_id = page_id_list[cur_page_list_index];
+
     return    next_page_id;
 }
 
+//没有副作用
+function nextPageId()
+{
+//    console.log(cur_page_list_index);
+
+    if(cur_page_list_index>=page_id_list.length){
+        return -1;
+    }
+
+    next_page_id = page_id_list[cur_page_list_index+1];
+    return    next_page_id;
+}
+
+//没有副作用
+// num接下来的几个
+function listNextPageId(num){
+//    console.log(cur_page_list_index);
+    var nextPageList = []
+    for(var i = 0;i<num;i++){
+        if(cur_page_list_index>=page_id_list.length){
+            break;
+        }
+
+        next_page_id = page_id_list[cur_page_list_index+i+1];
+        nextPageList.push(next_page_id)    ;
+
+    }
+
+    return nextPageList;
+
+}
 function getComplexNextPageId()
 {
     var next_ins = getNextPageId();
@@ -147,8 +247,9 @@ function showPage(pageId){
         $('#page'+pageId).find("li").show();
 
         this_page_index = page_id_list.indexOf(pageId);
-        cur_page_list_index = this_page_index+1;
-        console.log(cur_page_list_index);
+        console.log('本页的index'+this_page_index);
+
+        cur_page_list_index = this_page_index;
 }
 
 function langdu_callback(){
@@ -190,6 +291,11 @@ function continue_next_page(this_ele){
             var ele_id = $(this_ele).parents(".m-img").attr('id');
             ele_id = parseInt(ele_id.substr(4));
 
+            if(ele_id==9 || ele_id==11||ele_id==18){
+                control_show(ele_id, 3);
+                return;
+            }
+
             $("#page"+ele_id).parent().removeClass("z-current");
             $("#page"+ele_id).find("li").hide();
 
@@ -207,28 +313,35 @@ function continue_next_page(this_ele){
             }
             console.log("next_ele_id:"+next_ele_id);
 
+
+
             switch(next_ele_id) {
                 case 0:
+                    if(ele_id==9){
+//                        上面的逻辑已经执行了，就不再重复执行
+                        break;
+                    }
+
                     $("#page0").parent().addClass("z-current");
                     $("#page0").find("li").show();
 //                    alert("0");
                     control(next_ele_id, 1,1000);
                     break;
-                 case 10:
-                    // 第一次显示数字
-
-                    //空屏
-                    // console.log('空屏前');
-                    // pipeline(10, showVoidPage, hideVoidPage);
-                    // console.log("空屏后");
-
-                    choiceWindowTime = 20000;
-
-                    $("#page"+next_ele_id).parent().addClass("z-current");
-                    $("#page"+next_ele_id).find("li").show();
-                    alert("10");
-                    control(next_ele_id, 1, choiceWindowTime);
-                    break;
+//                 case 10:
+//                    // 第一次显示数字
+//
+//                    //空屏
+//                    // console.log('空屏前');
+//                    // pipeline(10, showVoidPage, hideVoidPage);
+//                    // console.log("空屏后");
+//
+//                    choiceWindowTime = 20000;
+//
+//                    $("#page"+next_ele_id).parent().addClass("z-current");
+//                    $("#page"+next_ele_id).find("li").show();
+//                    alert("10");
+//                    control(next_ele_id, 1, choiceWindowTime);
+//                    break;
 
                 case 16:
                     choiceWindowTime = 20000;
@@ -244,7 +357,7 @@ function continue_next_page(this_ele){
 
 $(function(){
 
-        showPage(1);
+        showPage(11);
 
         var ele = $('#nr').find("li[ctype='7']");
         ele.css("width", "100%");
@@ -270,7 +383,7 @@ $(function(){
 //            alert("dfdfd");
 //        });
         //以下代码是往前（下一个页面走）
-        $('#nr').find("li[ctype='l']").click(function(){ //,button[type='submit']
+        $('#nr').find("li[ctype='l'], .go-next-page").click(function(){ //,button[type='submit']
             continue_next_page(this);
         });
 
