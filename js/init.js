@@ -172,7 +172,7 @@ console.log(cur_page_list_index);
 
 //默认20秒
 default_show_time = 20000;
-page_show_time_dict = {0:1000, 10:10000, 11:20000, 12:20000, 13:10000, 14:20000};
+page_show_time_dict = {0:1000, 10:10000, 11:20000, 12:20000, 13:10000, 14:20000, 16:15000, 17:15000};
 
 //往后走了n步
 function goNstep(num){
