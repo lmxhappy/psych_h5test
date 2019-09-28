@@ -131,6 +131,7 @@ $(function(){
 
 
     // 对错的两个按钮绑定click事件。
+    //32是朗读练习
     //32、33组成一个loop，两次loop
     //跳出这个循环
     $(".langdu_test").click(function(){
