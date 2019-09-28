@@ -164,7 +164,7 @@ function hideVoidPage(){
 // 20、21默读练习，前面是page0，后面是page18
 //12后面要第二个读数测试，要有一个说明页面，所以插入18
 // 10、101是第一次数字，前者显示用，后者点选用。
-page_id_list =[1,2,3,4,5,6,7,8,9,0,10,101, 11,0, 12,121,[18, numberRead2_callback_func],0, 13,131, [18,pic2_explain_callback],0, 14,141, 15,16,[18,wordRead2_callback],17,[18,finish_first_test],19,0,20,21,[18, modu_callback],23,24,25,26,27,0,32,33,[18, langdu_callback], 28,29,30,31,34];
+page_id_list =[1,2,3,4,5,6,7,8,9,0,10,101, 11,0, 12,121,[18, numberRead2_callback_func],0, 13,131, [18,pic2_explain_callback],0, 14,141, 15,0,16,161, [18,wordRead2_callback],0,17,171, [18,finish_first_test],19,0,20,21,[18, modu_callback],23,24,25,26,27,0,32,33,[18, langdu_callback], 28,29,30,31,34];
 
 //当前显示的是index是0的，即page1，所以下一个是index为1的page
 var cur_page_list_index = 1;
@@ -282,7 +282,7 @@ function pic_control_callback(){
 }
 
 function wordRead2_callback(){
-    $('#page18 li[ctype="7"] span').html("本测试结束，请进行下一测试。");
+    $('#page18 li[ctype="7"] span').html("请继续完成快速读字表测试二。");
 
 }
 
@@ -291,7 +291,7 @@ function continue_next_page(this_ele){
             var ele_id = $(this_ele).parents(".m-img").attr('id');
             ele_id = parseInt(ele_id.substr(4));
 
-            if(ele_id==9 || ele_id==11||ele_id==18){
+            if([9, 11,18,15].indexOf(ele_id) >=0 ){
                 control_show(ele_id, 3);
                 return;
             }
@@ -357,7 +357,7 @@ function continue_next_page(this_ele){
 
 $(function(){
 
-        showPage(1);
+        showPage(15);
 
         var ele = $('#nr').find("li[ctype='7']");
         ele.css("width", "100%");
