@@ -240,6 +240,36 @@ $(function(){
                 });
 
         });
+
+        /**选择数字*/
+        $('.numbers_red td').each(function(){
+            $(this).click(function(){
+
+//                 alert("Testddd");
+                //增加绿色北京
+                // $(this).addClass('green-bg');
+
+                var num = $(this).html();
+                // $(this).css("text-decoration", "line-through");
+                $(this).css("color", "red");
+
+                //就是给出随机数字数组的偏移量
+                var numberId = $(this).attr('numberId');
+                console.log(numberId);
+                numberId = parseInt(numberId);
+
+                //防止多次点击，多次存入
+                var ret = $.inArray(numberId, choice);
+                // console.log(ret);
+                //不在，才插入
+
+                if(ret == -1){
+                    choice.push(numberId);
+                }
+                // console.log(choice);
+
+            });
+        });
     }
 
     addClickEvent();

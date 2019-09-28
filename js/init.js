@@ -288,16 +288,21 @@ function wordRead2_callback(){
 }
 
 function isContinueShow(ele_id){
-    if([9, 11,18, 15].indexOf(ele_id) >=0 && [19, 23, 28].indexOf(nextPageId())< 0){
+    if([9, 11,18, 15].indexOf(ele_id) >=0 ){
+        if(ele_id == 18 && [19, 23, 28].indexOf(nextPageId())> 0){
+            return false;
+        }
         return true;
     }
+
+    return false;
 }
 function continue_next_page(this_ele){
         //获得当前显示的页面的id
             var ele_id = $(this_ele).parents(".m-img").attr('id');
             ele_id = parseInt(ele_id.substr(4));
 
-            if(isContinueShow()){
+            if(isContinueShow(ele_id)){
 
                 control_show(ele_id, 3);
                 return;
@@ -364,7 +369,7 @@ function continue_next_page(this_ele){
 
 $(function(){
 
-        showPage(27);
+        showPage(1);
 
         var ele = $('#nr').find("li[ctype='7']");
         ele.css("width", "100%");

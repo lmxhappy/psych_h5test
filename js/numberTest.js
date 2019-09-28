@@ -139,8 +139,8 @@ $(function(){
 	 
 
 	/**选择数字*/
-	$('.numbers').find('td').click(function(){
-			// alert("Testddd");
+	$('.numbers td').click(function(){
+			 alert("Testddd");
 			//增加绿色北京
 			// $(this).addClass('green-bg');
 
