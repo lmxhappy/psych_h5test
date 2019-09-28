@@ -12,6 +12,94 @@ function num2filename(img_num_list){
 }
 
 
+//记录结果
+function number_click_func(this_ele){
+            var ele_id = $(this_ele).parents(".m-img").attr('id');
+            var index = $(this_ele).attr('idx');
+            var word = $(this_ele).html();
+
+            console.log($(this_ele));
+            ele_id = ele_id.substr(4);
+            ele_id = parseInt(ele_id);
+            console.log(ele_id+' '+index+' '+word);
+
+            switch(ele_id){
+                case 3:
+                      console.log("个人信息页面");
+                     console.log(collector);
+                     var sex_str= $("input[name='inlineRadioOptions']:checked").val();
+                     var sex = sex_str === 'option1'?'female':'male';
+
+                    var age = $("input[name='yearold']").val();
+                    var phone = $("input[name='phonenum']").val();
+                    var wechat = $("input[name='wechat']").val();
+                    var alipay = $("input[name='alipay']").val();
+                    var email = $("input[name='email']").val();
+                    var province = $("input[id='inputProvince']").val();
+                    var city = $("input[id='inputCity']").val();
+                    var zone = $("input[id='inputZone']").val();
+
+                     collector.setPersonal(sex, age, phone, wechat, alipay, email, province, city,  zone);
+
+                 case 10:
+                     console.log("数字1");
+                     console.log(collector);
+                     collector.setNumRead1(index, word)  ;
+
+//                         go_next_page(10);
+                        choiceWindowTime = 20000;
+//                      control(10, 1, choiceWindowTime);
+                break;
+                     break;
+                 case 13:
+                    console.log("数字2");
+                    collector.setNumRead2(index, word);
+
+//                        control(13, 1, 1000);
+//                    go_next_page(13);
+                    break;
+                 case 161:
+                      console.log("汉字1");
+                      collector.setwordRead1(index, word);
+
+//                      go_next_page(16);
+                      break;
+                 case 16:
+                      console.log("汉字1--结束页");
+                      collector.add_wwords1(index, word);
+
+//                      go_next_page(16);
+                      break;
+                 case 171:
+                      console.log("汉字2");
+                      collector.setwordRead1(index, word);
+
+//                      go_next_page(17);
+                      break;
+                 case 17:
+                      console.log("汉字2");
+                      collector.add_wwords1(index, word);
+
+//                      go_next_page(17);
+                      break;
+                 case 12:
+                      console.log("图1");
+                      collector.setPicRead1(index, word);
+
+//                      go_next_page(12);
+                      break;
+                 case 14:
+                      console.log("图2");
+                      collector.setPicRead2(index, word);
+
+                      go_next_page(14);
+
+                      break;
+            }
+}
+
+
+
 $(function(){
 
     ////////////////////////////////////设置图测试
@@ -154,64 +242,6 @@ $(function(){
     //     $(this).addClass('green-bg');
     // });
 
-   function number_click_func(this_ele){
-                var ele_id = $(this_ele).parents(".m-img").attr('id');
-                var index = $(this_ele).attr('idx');
-                var word = $(this_ele).html();
-
-                console.log($(this_ele));
-                ele_id = ele_id.substr(4);
-                ele_id = parseInt(ele_id);
-                console.log(ele_id+' '+index+' '+word);
-
-                switch(ele_id){
-                     case 10:
-                         console.log("数字1");
-                         console.log(collector);
-                         collector.setNumRead1(index, word)  ;
-
-//                         go_next_page(10);
-                            choiceWindowTime = 20000;
-                          control(10, 1, choiceWindowTime);
-                    break;
-                         break;
-                     case 13:
-                        console.log("数字2");
-                        collector.setNumRead2(index, word);
-
-//                        control(13, 1, 1000);
-                        go_next_page(13);
-                        break;
-                     case 16:
-                          console.log("汉字1");
-                          collector.setwordRead1(index, word);
-
-                          go_next_page(16);
-                          break;
-                     case 17:
-                          console.log("汉字2");
-                          collector.setwordRead1(index, word);
-
-                          go_next_page(17);
-                          break;
-                     case 12:
-                          console.log("图1");
-                          collector.setPicRead1(index, word);
-
-                          go_next_page(12);
-                          break;
-                     case 14:
-                          console.log("图2");
-                          collector.setPicRead2(index, word);
-
-                          go_next_page(14);
-
-                          break;
-                }
-   }
-
-
-
 
 
     function addClickEvent(){
@@ -266,7 +296,10 @@ $(function(){
                 if(ret == -1){
                     choice.push(numberId);
                 }
-                // console.log(choice);
+
+
+//                记录结果
+                 number_click_func(this);
 
             });
         });

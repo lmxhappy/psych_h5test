@@ -22,12 +22,18 @@ class Collector{
 
 
 	    //记录点击哪些字
+//	    最后一个字
 	    this.wordRead1_index = -1;
 	    this.wordRead1_word = '';
+	    //w声母的字
+	    this.wwords1 = [];
 
 	    //记录点击哪些字
+	    //	    最后一个字
 	    this.wordRead2_index = -1;
 	    this.wordRead2_word = '';
+//	    w声母的字
+	    this.wwords2 = [];
 
 	    // 记录默读句子的答案
 	    this.modu = new Dictionary();
@@ -42,13 +48,16 @@ class Collector{
 	    this.eval = new Dictionary();
     }
 
-    setPersonal(sex, age, phone, wechat, mail, city){
+    setPersonal(sex, age, phone, wechat, alipay, mail,  province, city, zone){
     	this.personal.add('sex', sex);
     	this.personal.add('age', age);
     	this.personal.add('phone', phone);
     	this.personal.add('wechat', wechat);
+    	this.personal.add('alipay', alipay);
     	this.personal.add('mail', mail);
+    	this.personal.add('province', province);
     	this.personal.add('city', city);
+    	this.personal.add('zone', zone);
     }
 
     setNumRead1(numRead1_index, numRead1_num){
@@ -81,6 +90,14 @@ class Collector{
 	    this.wordRead1_index = index;
 	    this.wordRead1_word = word;
 	}
+
+    add_wwords1(index, word){
+        this.wwords1.push([index, word]);
+    }
+
+    add_wwords2(index, word){
+        this.wwords2.push([index, word]);
+    }
 
 	setwordRead2(index, word){
 	    //记录点击哪些字

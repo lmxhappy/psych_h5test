@@ -19,6 +19,8 @@
 //                                    alert("test");
                                      event.preventDefault();
                                     event.stopPropagation();
+                                     number_click_func(this);
+
                                     continue_next_page(this);
                                 }
                                 form.classList.add('was-validated');

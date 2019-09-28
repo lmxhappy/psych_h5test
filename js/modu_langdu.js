@@ -117,7 +117,7 @@ $(function(){
        //主进度条，后退一格
         cur_page_list_index--;
 
-        set_sentences(23, modu_sentences[cur_index], "#langdu-test-content");
+        set_sentences(23, modu_sentences[cur_index], "#modu-content");
         cur_index +=1;
     });
       ///////////////////////////////////////默读///////////////////////////////////////////////////
