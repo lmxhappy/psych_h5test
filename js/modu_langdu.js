@@ -117,7 +117,7 @@ $(function(){
        //主进度条，后退一格
         cur_page_list_index--;
 
-        set_sentences(23, modu_sentences[cur_index], "#modu-content");
+        set_sentences(23, modu_sentences[cur_index], "#langdu-test-content");
         cur_index +=1;
     });
       ///////////////////////////////////////默读///////////////////////////////////////////////////
@@ -125,6 +125,7 @@ $(function(){
 
     // 这是替换的。原来是有显示的
     langdu_test_sentences = ['土豆是黄色的','叔叔在南极拍了很多绿色植物的照片'];
+    set_sentences(32, langdu_test_sentences[0], "#langdu-test-content");
 
     // 下一个要显示的index
     langdu_test_cur_index = 1;
