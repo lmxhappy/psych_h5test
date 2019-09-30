@@ -15,6 +15,7 @@ $(function(){
 
     // 这是替换的。原来是有显示的
     modu_test_sentences = ['这只鸵鸟飞的很高','天气晴朗,适合去公园游玩'];
+    set_sentences(20, modu_test_sentences[0], "#modu-test-content");
 
     // 下一个要显示的index
     test_cur_index = 1;
@@ -207,7 +208,7 @@ $(function(){
     /**
     @ page_list:[27,28,29]
     @ langdu_sentences: 要显示的集合
-    @ cur_index: 现在的位置
+    @ langdu_cur_index: 现在的位置
      html_loc: html位置
     */
     first = 28;//click进入的，通过click事件进入的

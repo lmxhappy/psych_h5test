@@ -165,7 +165,7 @@ function hideVoidPage(){
 //12后面要第二个读数测试，要有一个说明页面，所以插入18
 // 10、101是第一次数字，前者显示用，后者点选用。
 //23是默读的题目页面
-page_id_list =[1,2,3,4,5,6,7,8,9,0,10,101, 11,0, 12,121,[18, numberRead2_callback_func],0, 13,131, [18,pic2_explain_callback],0, 14,141, 15,0,16,161, [18,wordRead2_callback],0,17,171, [18,finish_first_test], 19, 0,20,21,[18, modu_callback],23,24,25,26,27,0,32,33,[18, langdu_callback], 28,29,30,31,34];
+page_id_list =[1,2,3,4,5,6,7,8,9,0,10,101, 11,0, 12,121,[18, numberRead2_callback_func],0, 13,131, [18,pic2_explain_callback],0, 14,141, 15,0,16,161, [18,wordRead2_callback],0,17,171, [18,finish_first_test], 19, 0,0,20,21,[18, modu_callback],23,24,25,26,27,0,0,32,33,[18, langdu_callback], 28,29,30,31,34];
 
 //当前显示的是index是0的，即page1，所以下一个是index为1的page
 var cur_page_list_index = 1;
@@ -288,8 +288,9 @@ function wordRead2_callback(){
 }
 
 function isContinueShow(ele_id){
-    if([9, 11,18, 15].indexOf(ele_id) >=0 ){
-        if(ele_id == 18 && [19, 23, 28].indexOf(nextPageId())> 0){
+    if([9, 11,18, 15,19,27].indexOf(ele_id) >=0 ){
+        var nextId = nextPageId();
+        if(ele_id == 18 && [19, 23, 28].indexOf(nextId)>= 0){
             return false;
         }
         return true;
@@ -297,16 +298,41 @@ function isContinueShow(ele_id){
 
     return false;
 }
+
+function isContinueTwoShow(ele_id){
+    if([27].indexOf(ele_id) >=0 ){
+//        var nextId = nextPageId();
+//        if(ele_id == 18 && [19, 23, 28].indexOf(nextId)>= 0){
+//            return false;
+//        }
+        return true;
+    }
+
+    return false;
+}
+
 function continue_next_page(this_ele){
         //获得当前显示的页面的id
             var ele_id = $(this_ele).parents(".m-img").attr('id');
             ele_id = parseInt(ele_id.substr(4));
 
             if(isContinueShow(ele_id)){
+                console.log("连续播放3页")
 
                 control_show(ele_id, 3);
                 return;
+            }else{
+                console.log("不！！！连续播放3页")
+
             }
+
+//            if(isContinueTwoShow(ele_id)){
+//                  console.log("连续播放2页")
+//                control_show(ele_id, 2);
+//
+//            }else{
+//                              console.log("不！！！连续播放2页")
+//            }
 
             $("#page"+ele_id).parent().removeClass("z-current");
             $("#page"+ele_id).find("li").hide();
@@ -325,51 +351,52 @@ function continue_next_page(this_ele){
             }
             console.log("next_ele_id:"+next_ele_id);
 
+            $("#page"+next_ele_id).parent().addClass("z-current");
+                    $("#page"+next_ele_id).find("li").show();
 
-
-            switch(next_ele_id) {
-                case 0:
-                    if(ele_id==9){
-//                        上面的逻辑已经执行了，就不再重复执行
-                        break;
-                    }
-
-                    $("#page0").parent().addClass("z-current");
-                    $("#page0").find("li").show();
-//                    alert("0");
-                    control(next_ele_id, 1,1000);
-                    break;
-//                 case 10:
-//                    // 第一次显示数字
+//            switch(next_ele_id) {
+//                case 0:
+//                    if(ele_id==9){
+////                        上面的逻辑已经执行了，就不再重复执行
+//                        break;
+//                    }
 //
-//                    //空屏
-//                    // console.log('空屏前');
-//                    // pipeline(10, showVoidPage, hideVoidPage);
-//                    // console.log("空屏后");
+//                    $("#page0").parent().addClass("z-current");
+//                    $("#page0").find("li").show();
+////                    alert("0");
+//                    control(next_ele_id, 1,1000);
+//                    break;
+////                 case 10:
+////                    // 第一次显示数字
+////
+////                    //空屏
+////                    // console.log('空屏前');
+////                    // pipeline(10, showVoidPage, hideVoidPage);
+////                    // console.log("空屏后");
+////
+////                    choiceWindowTime = 20000;
+////
+////                    $("#page"+next_ele_id).parent().addClass("z-current");
+////                    $("#page"+next_ele_id).find("li").show();
+////                    alert("10");
+////                    control(next_ele_id, 1, choiceWindowTime);
+////                    break;
 //
+//                case 16:
 //                    choiceWindowTime = 20000;
 //
+//                    control(next_ele_id, 2, choiceWindowTime);
+//                    break;
+//                 default:
 //                    $("#page"+next_ele_id).parent().addClass("z-current");
 //                    $("#page"+next_ele_id).find("li").show();
-//                    alert("10");
-//                    control(next_ele_id, 1, choiceWindowTime);
 //                    break;
-
-                case 16:
-                    choiceWindowTime = 20000;
-
-                    control(next_ele_id, 2, choiceWindowTime);
-                    break;
-                 default:
-                    $("#page"+next_ele_id).parent().addClass("z-current");
-                    $("#page"+next_ele_id).find("li").show();
-                    break;
-            }
+//            }
 }
 
 $(function(){
 
-        showPage(1);
+        showPage(15);
 
         var ele = $('#nr').find("li[ctype='7']");
         ele.css("width", "100%");
