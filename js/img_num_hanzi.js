@@ -92,7 +92,7 @@ function number_click_func(this_ele){
                       console.log("图2");
                       collector.setPicRead2(index, word);
 
-                      go_next_page(14);
+//                      go_next_page(14);
 
                       break;
             }
