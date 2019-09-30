@@ -36,11 +36,16 @@ class Collector{
 	    this.wwords2 = [];
 
 	    // 记录默读句子的答案
+	    this.modu_pratice = new Dictionary();
+	    //显示的一个列表
+	    this.modu_show = [];
 	    this.modu = new Dictionary();
 	    // 记录默读评估答案
 //	    this.modu_eval = new Dictionary();
 
 	    // 记录朗读句子的答案
+	    this.langdu_practice = new Dictionary();
+	    this.langdu_show = [];
 	    this.langdu = new Dictionary();
 
 
@@ -105,21 +110,41 @@ class Collector{
 	    this.wordRead1_word = word;
 	}
 
+    //	朗读显示的列表
+	setModuShow(llist){
+	    // 记录朗读句子的答案
+	    this.modu_show = llist;
+	 }
+
 	setModu(dict){
 	    // 记录默读句子的答案
 	    this.modu = dict;
 	}
 
-	push2Modu(key, value){
-		this.modu.add(key,value);
+	push2ModuPractice(sentence, choice){
+		this.modu_pratice.add(sentence,choice);
 
 	}
 
+	push2Modu(sentence, choice){
+		this.modu.add(sentence,choice);
+
+	}
+
+//	朗读显示的列表
+	setLangduShow(llist){
+	    // 记录朗读句子的答案
+	    this.langdu_show = llist;
+	 }
 
 	setLangdu(dict){
 	    // 记录朗读句子的答案
 	    this.langdu = dict;
 	 }
+
+	push2LangduPractice(sentence, choice){
+		this.langdu_practice.add(sentence,choice);
+	}
 
 	push2Langdu(key, value){
 		this.langdu.add(key,value);

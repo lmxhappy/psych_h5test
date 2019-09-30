@@ -41,17 +41,17 @@ function number_click_func(this_ele){
 
                      collector.setPersonal(sex, age, phone, wechat, alipay, email, province, city,  zone);
 
-                 case 10:
+                 case 101:
                      console.log("数字1");
                      console.log(collector);
                      collector.setNumRead1(index, word)  ;
 
 //                         go_next_page(10);
-                        choiceWindowTime = 20000;
+//                        choiceWindowTime = 20000;
 //                      control(10, 1, choiceWindowTime);
-                break;
+
                      break;
-                 case 13:
+                 case 131:
                     console.log("数字2");
                     collector.setNumRead2(index, word);
 
@@ -82,13 +82,13 @@ function number_click_func(this_ele){
 
 //                      go_next_page(17);
                       break;
-                 case 12:
+                 case 121:
                       console.log("图1");
                       collector.setPicRead1(index, word);
 
 //                      go_next_page(12);
                       break;
-                 case 14:
+                 case 141:
                       console.log("图2");
                       collector.setPicRead2(index, word);
 
