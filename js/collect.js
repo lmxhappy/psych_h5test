@@ -51,6 +51,8 @@ class Collector{
 
 	    // 记录朗读评估答案
 	    this.eval = new Dictionary();
+//	    this.eval1 = new Dictionary();
+//	    this.eval2 = new Dictionary();
     }
 
     setPersonal(sex, age, phone, wechat, alipay, mail,  province, city, zone){
@@ -156,5 +158,14 @@ class Collector{
 	    this.eval.add(key, value);
 	}
 
+//	setEval1(key, value){
+//	    // 记录默读评估答案
+//	    this.eval1.add(key, value);
+//	}
+//
+//	setEval2(key, value){
+//	    // 记录默读评估答案
+//	    this.eval2.add(key, value);
+//	}
 }
 

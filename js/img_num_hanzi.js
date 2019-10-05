@@ -66,7 +66,8 @@ function number_click_func(this_ele){
                       break;
                  case 16:
                       console.log("汉字1--结束页");
-                      collector.add_wwords1(index, word);
+                      idx = parseInt(index);
+                      collector.add_wwords1(idx, word);
 
 //                      go_next_page(16);
                       break;
@@ -78,19 +79,25 @@ function number_click_func(this_ele){
                       break;
                  case 17:
                       console.log("汉字2");
-                      collector.add_wwords1(index, word);
+                      idx = parseInt(index);
+
+                      collector.add_wwords2(idx, word);
 
 //                      go_next_page(17);
                       break;
                  case 121:
                       console.log("图1");
-                      collector.setPicRead1(index, word);
+                      img_src = $(word).attr('src');
+//                      alert(img_src);
+                      collector.setPicRead1(index, img_src);
 
 //                      go_next_page(12);
                       break;
                  case 141:
                       console.log("图2");
-                      collector.setPicRead2(index, word);
+                      img_src = $(word).attr('src');
+//                      alert(img_src);
+                      collector.setPicRead2(index, img_src);
 
 //                      go_next_page(14);
 

@@ -3,18 +3,22 @@
 $(function(){
 
 	var list = new List();
-	$(".eval").click(function(){
-		// alert("eval");
-
-		var content = $(this).html();
-		// console.log(list);
-		if(list.contains(content)){
-			list.remove(content);
-		}else{
-			list.append(content);
-		}
-		// console.log(list);
+	$("fieldset input").each(function(){
+//	    alert("set");
+        $(this).click(function(){
+             var label = $(this).attr('label');
+               alert(label);
+//            var content = $(this).html();
+            // console.log(list);
+            if(list.contains(label)){
+                list.remove(label);
+            }else{
+                list.append(label);
+            }
+             console.log(list);
+        });
 	});
+
 
 
     $(".eval_commit").click(function(){
@@ -38,7 +42,8 @@ $(function(){
         continue_next_page(this);
 
         var this_id = $(this).attr('id');
-        collector.setEval(this_id, list.toString());
+        var eval_id = $(this).attr('evalid');
+        collector.setEval(eval_id, list.toString());
 
 
         list.clear();
