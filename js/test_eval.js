@@ -7,7 +7,7 @@ $(function(){
 //	    alert("set");
         $(this).click(function(){
              var label = $(this).attr('label');
-               alert(label);
+//               alert(label);
 //            var content = $(this).html();
             // console.log(list);
             if(list.contains(label)){

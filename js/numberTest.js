@@ -140,7 +140,7 @@ $(function(){
 
 	/**选择数字*/
 	$('.numbers td').click(function(){
-			 alert("Testddd");
+//			 alert("Testddd");
 			//增加绿色北京
 			// $(this).addClass('green-bg');
 

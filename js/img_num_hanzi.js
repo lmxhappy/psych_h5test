@@ -1,6 +1,6 @@
 function num2filename(img_num_list){
 
-    var dir = 'imgs/';
+    var dir = '/Public/h5test/imgs/';
     img_file_list = [];
     for (var i = 0;i<img_num_list.length;i++){
         var num = img_num_list[i];
