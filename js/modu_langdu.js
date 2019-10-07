@@ -232,8 +232,10 @@ $(function(){
         var result = $(this).attr('result');
         var td_ele = $('#page28').find("#langdu-content");
         var modu_content = $(td_ele).html();
+        var start_time = $(td_ele).attr('start_time');
+        var finish_time = $(td_ele).attr('finish_time');
 
-        collector.push2Langdu(modu_content, result);
+        collector.push2Langdu(modu_content, parseInt(result), parseInt(start_time), parseInt(finish_time));
         console.log(collector);
         console.log('朗读');
 
@@ -259,6 +261,9 @@ $(function(){
         //主进度条，后退一格
         cur_page_list_index--;
 
+        var d = new Date();
+        var n = d.getTime();
+        $("#langdu-content").attr("start_time", n);
         set_sentences(first, langdu_sentences[langdu_cur_index], "#langdu-content");
         langdu_cur_index +=1;
 
