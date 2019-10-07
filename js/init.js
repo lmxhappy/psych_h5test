@@ -414,7 +414,7 @@ function continue_next_page(this_ele){
 
 $(function(){
 
-        showPage(1);
+        showPage(31);
 
         var ele = $('#nr').find("li[ctype='7']");
         ele.css("width", "100%");

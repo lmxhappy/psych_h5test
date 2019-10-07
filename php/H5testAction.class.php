@@ -42,17 +42,17 @@ class H5testAction extends Action {
         $data['picRead2_img_index']  =  $result_obj['picRead2_img_index'];
          $data['wordRead1_index']  = $result_obj['wordRead1_index'];
          $data['wordRead1_word'] =  $result_obj['wordRead1_word'];
-          $data['wwords1'] = json_encode($result_obj['wwords1']);
+          $data['wwords1'] = json_encode($result_obj['wwords1'], JSON_UNESCAPED_UNICODE);
          $data['wordRead2_index'] =  $result_obj['wordRead2_index'];
          $data['wordRead2_word'] =  $result_obj['wordRead2_word'];
-          $data['wwords2'] =  json_encode($result_obj['wwords2']);
-          $data['modu_pratice'] =  json_encode($result_obj['modu_pratice']);
-          $data['modu_show'] =  json_encode($result_obj['modu_show']);
-          $data['modu'] =  json_encode($result_obj['modu']);
-         $data['langdu_practice'] =   json_encode($result_obj['langdu_practice']);
-         $data['langdu_show'] =   json_encode($result_obj['langdu_show']);
-         $data['langdu'] =   json_encode($result_obj['langdu']);
-         $data['eval'] =   json_encode($result_obj['eval'],JSON_UNESCAPED_UNICODE);
+          $data['wwords2'] =  json_encode($result_obj['wwords2'], JSON_UNESCAPED_UNICODE);
+          $data['modu_pratice'] =  json_encode($result_obj['modu_pratice'], JSON_UNESCAPED_UNICODE);
+          $data['modu_show'] =  json_encode($result_obj['modu_show'], JSON_UNESCAPED_UNICODE);
+          $data['modu'] =  json_encode($result_obj['modu'], JSON_UNESCAPED_UNICODE);
+         $data['langdu_practice'] =   json_encode($result_obj['langdu_practice'], JSON_UNESCAPED_UNICODE);
+         $data['langdu_show'] =   json_encode($result_obj['langdu_show'], JSON_UNESCAPED_UNICODE);
+         $data['langdu'] =   json_encode($result_obj['langdu'], JSON_UNESCAPED_UNICODE);
+         $data['eval'] =   json_encode($result_obj['eval'], JSON_UNESCAPED_UNICODE);
 
          //print_r($data);
          $ret = M('h5test')->add($data);
