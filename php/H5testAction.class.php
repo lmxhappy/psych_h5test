@@ -52,7 +52,7 @@ class H5testAction extends Action {
          $data['langdu_practice'] =   json_encode($result_obj['langdu_practice']);
          $data['langdu_show'] =   json_encode($result_obj['langdu_show']);
          $data['langdu'] =   json_encode($result_obj['langdu']);
-         $data['eval'] =   json_encode($result_obj['eval']);
+         $data['eval'] =   json_encode($result_obj['eval'],JSON_UNESCAPED_UNICODE);
 
          //print_r($data);
          $ret = M('h5test')->add($data);

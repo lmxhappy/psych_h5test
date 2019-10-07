@@ -34,9 +34,9 @@
       $data['modu_show'] =  json_encode($result_obj['modu_show']);
       $data['modu'] =  json_encode($result_obj['modu']);
      $data['langdu_practice'] =   json_encode($result_obj['langdu_practice']);
-     $data['langdu_show'] =   json_encode($result_obj['langdu_show']);
-     $data['langdu'] =   json_encode($result_obj['langdu']);
-     $data['eval'] =   json_encode($result_obj['eval']);
+     $data['langdu_show'] =   json_encode($result_obj['langdu_show'],JSON_UNESCAPED_UNICODE);
+     $data['langdu'] =   json_encode($result_obj['langdu'], JSON_UNESCAPED_UNICODE);
+     $data['eval'] =   json_encode($result_obj['eval'],JSON_UNESCAPED_UNICODE);
 
      print_r($data);
 ?>
