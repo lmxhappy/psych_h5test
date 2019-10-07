@@ -40,7 +40,7 @@ class H5testAction extends Action {
          $data['picRead1_img_index']   =$result_obj['picRead1_img_index'];
         $data['picRead2_index'] =   $result_obj['picRead2_index'];
         $data['picRead2_img_index']  =  $result_obj['picRead2_img_index'];
-         $data['picRead2_index']  = $result_obj['wordRead1_index'];
+         $data['wordRead1_index']  = $result_obj['wordRead1_index'];
          $data['wordRead1_word'] =  $result_obj['wordRead1_word'];
           $data['wwords1'] = json_encode($result_obj['wwords1']);
          $data['wordRead2_index'] =  $result_obj['wordRead2_index'];
