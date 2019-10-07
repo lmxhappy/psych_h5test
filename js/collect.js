@@ -168,8 +168,8 @@ class Collector{
 
 	setwordRead2(index, word){
 	    //记录点击哪些字
-	    this.wordRead1_index = index;
-	    this.wordRead1_word = word;
+	    this.wordRead2_index = index;
+	    this.wordRead2_word = word;
 	}
 
     //	朗读显示的列表

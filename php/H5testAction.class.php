@@ -55,10 +55,10 @@ class H5testAction extends Action {
          $data['eval'] =   json_encode($result_obj['eval']);
 
          //print_r($data);
-         $ret = M('h5test')->save($data);
-        echo "----sql:".M('h5test')->getLastSql();
+         $ret = M('h5test')->add($data);
+        //echo "----sql:".M('h5test')->getLastSql();
 
-         echo $ret;
+         //echo $ret;
 	}
 }
 ?>

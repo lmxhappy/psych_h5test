@@ -59,11 +59,11 @@ $(function(){
                 success:function(data){
                         console.log(data);
                 },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                     alert(XMLHttpRequest.status);
-                     alert(XMLHttpRequest.readyState);
-                     alert(textStatus);
-                 },
+//                error: function(XMLHttpRequest, textStatus, errorThrown) {
+//                     alert(XMLHttpRequest.status);
+//                     alert(XMLHttpRequest.readyState);
+//                     alert(textStatus);
+//                 },
                 dataType:'json'
         });
        }
