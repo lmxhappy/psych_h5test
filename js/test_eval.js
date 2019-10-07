@@ -48,5 +48,24 @@ $(function(){
 
         list.clear();
         //提交数据
+
+       if(eval_id==='2-2'){
+            var jsonStr = collector.toJson();
+
+            $.ajax({
+                type: 'POST',
+                url:'/Index/H5test/post_data',
+                data:jsonStr,
+                success:function(data){
+                        console.log(data);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                     alert(XMLHttpRequest.status);
+                     alert(XMLHttpRequest.readyState);
+                     alert(textStatus);
+                 },
+                dataType:'json'
+        });
+       }
     });
 });

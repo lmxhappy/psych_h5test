@@ -60,7 +60,9 @@ function number_click_func(this_ele){
                     break;
                  case 161:
                       console.log("汉字1");
-                      collector.setwordRead1(index, word);
+                      idx = parseInt(index);
+
+                      collector.setwordRead1(idx, word);
 
 //                      go_next_page(16);
                       break;
@@ -73,7 +75,9 @@ function number_click_func(this_ele){
                       break;
                  case 171:
                       console.log("汉字2");
-                      collector.setwordRead1(index, word);
+                      idx = parseInt(index);
+
+                      collector.setwordRead2(idx, word);
 
 //                      go_next_page(17);
                       break;

@@ -55,6 +55,66 @@ class Collector{
 //	    this.eval2 = new Dictionary();
     }
 
+    toDict(){
+        var dict={
+
+            // 个人信息
+            'personal':this.personal.toDict(),
+
+            //第一次读数的索引和具体数字
+            'numRead1_index': this.numRead1_index,
+            'numRead1_num': this.numRead1_num,
+
+            //第二次读数的索引和具体数字
+            'numRead2_index':this.numRead2_index,
+            'numRead2_num':this.numRead2_num,
+
+            // 第一次读图的索引和图的索引
+            'picRead1_index':this.picRead1_index,
+            'picRead1_img_index':this.picRead1_img_index,
+
+            // 第二次读图的索引和图的索引
+            'picRead2_index':this.picRead2_index,
+            'picRead2_img_index':this.picRead2_img_index,
+
+
+            //记录点击哪些字
+            'wordRead1_index':this.wordRead1_index,
+            'wordRead1_word':this.wordRead1_word,
+            //w声母的字
+            'wwords1':this.wwords1,
+
+            //记录点击哪些字
+            'wordRead2_index':this.wordRead2_index,
+            'wordRead2_word':this.wordRead2_word,
+    //	    w声母的字
+            'wwords2':this.wwords2,
+
+            // 记录默读句子的答案
+            'modu_pratice':this.modu_pratice.toDict(),
+            //显示的一个列表
+            'modu_show':this.modu_show,
+            'modu':this.modu.toDict(),
+            // 记录默读评估答案
+
+            // 记录朗读句子的答案
+            'langdu_practice':this.langdu_practice.toDict(),
+            'langdu_show':this.langdu_show,
+            'langdu':this.langdu.toDict(),
+
+
+            // 记录朗读评估答案
+            'eval':this.eval.toDict()
+        };
+        return dict;
+
+    }
+
+    toJson(){
+        var dict = this.toDict();
+        var jsonStr = JSON.stringify(dict);
+        return jsonStr;
+    }
     setPersonal(sex, age, phone, wechat, alipay, mail,  province, city, zone){
     	this.personal.add('sex', sex);
     	this.personal.add('age', age);
@@ -128,8 +188,8 @@ class Collector{
 
 	}
 
-	push2Modu(sentence, choice){
-		this.modu.add(sentence,choice);
+	push2Modu(sentence, choice, start_time, finish_time){
+		this.modu.add(sentence,[choice, start_time, finish_time]);
 
 	}
 
@@ -148,8 +208,8 @@ class Collector{
 		this.langdu_practice.add(sentence,choice);
 	}
 
-	push2Langdu(key, value){
-		this.langdu.add(key,value);
+	push2Langdu(sentence, choice, start_time, finish_time){
+		this.langdu.add(sentence,[choice, start_time, finish_time]);
 
 	}
 

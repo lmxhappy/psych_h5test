@@ -7,6 +7,7 @@ function Dictionary() {
     this.showAll = showAll;
     this.count = count;
     this.clear = clear;
+    this.toDict = toDict;
 }
 
 function add(key, value) {
@@ -29,6 +30,15 @@ function showAll() {
     console.log(str);
 }
 
+function toDict(){
+
+    var dict = {};
+    for(var key in this.datastore) {
+        dict[ key] = this.datastore[key];
+    }
+    return dict;
+
+}
 function count() {
     /*var ss = Object.keys(this.datastore).length;
     console.log("ssss   "+ss);

@@ -299,6 +299,22 @@ function isContinueShow(ele_id){
     return false;
 }
 
+function recordtime(){
+   var nextId = nextPageId();
+
+//   23默读、28朗读
+   if(23===nextId){
+        var d = new Date();
+        var n = d.getTime();
+        $("#modu-content").attr("start_time", n);
+   }
+
+   if(28 ===nextId){
+        var d = new Date();
+        var n = d.getTime();
+        $("#langdu-content").attr("start_time", n);
+   }
+}
 function isContinueTwoShow(ele_id){
     if([27].indexOf(ele_id) >=0 ){
 //        var nextId = nextPageId();
@@ -323,8 +339,10 @@ function continue_next_page(this_ele){
                 return;
             }else{
                 console.log("不！！！连续播放3页")
-
             }
+
+//            为了默读、朗读第一个题的时间
+            recordtime();
 
 //            if(isContinueTwoShow(ele_id)){
 //                  console.log("连续播放2页")
@@ -352,7 +370,7 @@ function continue_next_page(this_ele){
             console.log("next_ele_id:"+next_ele_id);
 
             $("#page"+next_ele_id).parent().addClass("z-current");
-                    $("#page"+next_ele_id).find("li").show();
+            $("#page"+next_ele_id).find("li").show();
 
 //            switch(next_ele_id) {
 //                case 0:
@@ -423,6 +441,13 @@ $(function(){
 //        });
         //以下代码是往前（下一个页面走）
         $('#nr').find("li[ctype='l'], .go-next-page").click(function(){ //,button[type='submit']
+            continue_next_page(this);
+        });
+
+        $('#modu_read_finish').click(function(){ //,button[type='submit']
+            var d = new Date();
+            var n = d.getTime();
+            $("#modu-content").attr("finish_time", n);
             continue_next_page(this);
         });
 
