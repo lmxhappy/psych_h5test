@@ -303,13 +303,13 @@ function recordtime(){
    var nextId = nextPageId();
 
 //   23默读、28朗读
-   if(23===nextId){
+   if(23=== nextId){
         var d = new Date();
         var n = d.getTime();
         $("#modu-content").attr("start_time", n);
    }
 
-   if(28 ===nextId){
+   if(28 === nextId){
         var d = new Date();
         var n = d.getTime();
         $("#langdu-content").attr("start_time", n);
@@ -414,7 +414,7 @@ function continue_next_page(this_ele){
 
 $(function(){
 
-        showPage(31);
+        showPage(1);
 
         var ele = $('#nr').find("li[ctype='7']");
         ele.css("width", "100%");
@@ -453,6 +453,12 @@ $(function(){
 
 
 
+        $('#langdu_read_finish').click(function(){ //,button[type='submit']
+            var d = new Date();
+            var n = d.getTime();
+            $("#langdu-content").attr("finish_time", n);
+            continue_next_page(this);
+        });
 
 //         $('#nr').find("button[type='submit']").click(function(e){ //,
 //

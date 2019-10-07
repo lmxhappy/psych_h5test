@@ -50,6 +50,7 @@ class Collector{
 
 
 	    // 记录朗读评估答案
+	    //默读和朗读分别有2次评估。分别标记为1-1、1-2、2-1和2-2
 	    this.eval = new Dictionary();
 //	    this.eval1 = new Dictionary();
 //	    this.eval2 = new Dictionary();
