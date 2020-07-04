@@ -27,6 +27,8 @@ function number_click_func(this_ele){
                 case 3:
                       console.log("个人信息页面");
                      console.log(collector);
+
+                     var name = $("input[name='username']").val();
                      var sex_str= $("input[name='inlineRadioOptions']:checked").val();
                      var sex = sex_str === 'option1'?'female':'male';
 
@@ -39,7 +41,7 @@ function number_click_func(this_ele){
                     var city = $("input[id='inputCity']").val();
                     var zone = $("input[id='inputZone']").val();
 
-                     collector.setPersonal(sex, age, phone, wechat, alipay, email, province, city,  zone);
+                     collector.setPersonal(name, sex, age, phone, wechat, alipay, email, province, city,  zone);
 
                  case 101:
                      console.log("数字1");

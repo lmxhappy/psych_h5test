@@ -23,10 +23,12 @@ class H5testAction extends Action {
         $personal = $result_obj['personal'];
         //var_dump($personal);
 
+//         $data['name'] =   $personal["name"];
         $data['sex'] =   $personal["sex"];
         $data['age'] = $personal["age"];
         $data['phone'] = $personal["phone"];
-        $data['wechat'] =  $personal["wechat"];
+//         $data['wechat'] =  $personal["wechat"];
+        $data['wechat'] =  $personal["name"]; //暂时在mysql里面占用这个，前端已经取消了微信号了
         $data['alipay'] =  $personal["alipay"];
         $data['mail'] =  $personal["mail"];
         $data['province'] =   $personal["province"];

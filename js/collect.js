@@ -116,7 +116,8 @@ class Collector{
         var jsonStr = JSON.stringify(dict);
         return jsonStr;
     }
-    setPersonal(sex, age, phone, wechat, alipay, mail,  province, city, zone){
+    setPersonal(name, sex, age, phone, wechat, alipay, mail,  province, city, zone){
+    	this.personal.add('name', name);
     	this.personal.add('sex', sex);
     	this.personal.add('age', age);
     	this.personal.add('phone', phone);

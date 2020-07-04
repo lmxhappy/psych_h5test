@@ -165,7 +165,7 @@ function hideVoidPage(){
 //12后面要第二个读数测试，要有一个说明页面，所以插入18
 // 10、101是第一次数字，前者显示用，后者点选用。
 //23是默读的题目页面
-page_id_list =[1,2,3,4,5,6,7,8,9,0,10,101, 11,0, 12,121,[18, numberRead2_callback_func],0, 13,131, [18,pic2_explain_callback],0, 14,141, 15,0,16,161, [18,wordRead2_callback],0,17,171, [18,finish_first_test], 19, 0,0,20,21,[18, modu_callback],23,24,25,26,27,0,0,32,33,[18, langdu_callback], 28,29,30,31,34];
+page_id_list =[1,2,3,4,8,9,0,10,101, 11,0, 12,121,[18, numberRead2_callback_func],0, 13,131, [18,pic2_explain_callback],0, 14,141, 15,0,16,161, [18,wordRead2_callback],0,17,171, [18,finish_first_test], 19, 0,0,20,21,[18, modu_callback],23,24,25,26,27,0,0,32,33,[18, langdu_callback], 28,29,30,31,34];
 
 //当前显示的是index是0的，即page1，所以下一个是index为1的page
 var cur_page_list_index = 1;
