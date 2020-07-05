@@ -159,13 +159,14 @@ function hideVoidPage(){
 }
 // $("#page11").parent().bind('cssClassChanged', function(){ alert("done") });
 
+//9 快速读数（一）的一个文字介绍页面
 // 10数字，12图，13数字，14图
 //27是朗读的说明页面，后面要跟page0（1秒的空屏）,18是一个介绍
 // 20、21默读练习，前面是page0，后面是page18
 //12后面要第二个读数测试，要有一个说明页面，所以插入18
 // 10、101是第一次数字，前者显示用，后者点选用。
 //23是默读的题目页面
-page_id_list =[1,2,3,4,8,9,0,10,101, 11,0, 12,121,[18, numberRead2_callback_func],0, 13,131, [18,pic2_explain_callback],0, 14,141, 15,0,16,161, [18,wordRead2_callback],0,17,171, [18,finish_first_test], 19, 0,0,20,21,[18, modu_callback],23,24,25,26,27,0,0,32,33,[18, langdu_callback], 28,29,30,31,34];
+page_id_list =[1,2,3,4,9,0,10,101, 11,0, 12,121,[18, numberRead2_callback_func],0, 13,131, [18,pic2_explain_callback],0, 14,141, 15,0,16,161, [18,wordRead2_callback],0,17,171, [18,finish_first_test], 19, 0,0,20,21,[18, modu_callback],23,24,25,26,27,0,0,32,33,[18, langdu_callback], 28,29,30,31,34];
 
 //当前显示的是index是0的，即page1，所以下一个是index为1的page
 var cur_page_list_index = 1;
@@ -186,6 +187,7 @@ function getNextPageId()
 //    console.log(cur_page_list_index);
 
     if(cur_page_list_index>=page_id_list.length){
+        console.log('超出pageid的数组的索引范围了')
         return -1;
     }
 
@@ -332,6 +334,14 @@ function continue_next_page(this_ele){
             var ele_id = $(this_ele).parents(".m-img").attr('id');
             ele_id = parseInt(ele_id.substr(4));
 
+//            开始录音
+//第二页就开始录音了，第一次录音
+//27页，第三次录音
+//6-11（数图）、11-15（数图）、15-19（2个汉字）、27-最后（朗读）
+            if([9, 11, 15, 27].indexOf(ele_id)>=0){
+                luyiner.start();
+            }
+
             if(isContinueShow(ele_id)){
                 console.log("连续播放3页")
 
@@ -439,8 +449,39 @@ $(function(){
 //        $('#nr').find("button[type='submit']").click(function(){
 //            alert("dfdfd");
 //        });
+
         //以下代码是往前（下一个页面走）
-        $('#nr').find("li[ctype='l'], .go-next-page").click(function(){ //,button[type='submit']
+        $('#nr').find("li[ctype='l']").click(function(){ //,button[type='submit']
+            continue_next_page(this);
+        });
+
+        //以下代码是往前（下一个页面走）
+        // 同时要检查有没有完成点选
+        $('#nr').find(".go-next-page").click(function(){ //,button[type='submit']
+            var choosed = $(this).parent().find(".green-bg");
+            if( choosed.length===0){
+                console.log('请选择最后一个');
+                return;
+            }
+
+            continue_next_page(this);
+        });
+
+//        将上面的下一页，改成了可以同时停止录音的
+//读数字、图、数字、图，上传一次；读字表上传1次；
+        //第11页、15页、19页停止录音、提交数据
+        //这里只管停
+       $('#up_luyin1, #up_luyin2, #up_luyin3').click(function(){
+            luyiner.stop();
+
+            console.log("停止录音");
+
+            var id = $(this).attr('id');
+            var filename = person_phone+'_'+id
+            luyiner.upload_luyin(filename);
+
+            console.log("停止录音, id:"+id+' filename:'+filename);
+
             continue_next_page(this);
         });
 

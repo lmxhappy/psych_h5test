@@ -27,22 +27,23 @@ function number_click_func(this_ele){
                 case 3:
                       console.log("个人信息页面");
                      console.log(collector);
-
-                     var name = $("input[name='username']").val();
                      var sex_str= $("input[name='inlineRadioOptions']:checked").val();
                      var sex = sex_str === 'option1'?'female':'male';
 
+                    var username = $("input[name='username']").val();
                     var age = $("input[name='yearold']").val();
                     var phone = $("input[name='phonenum']").val();
-                    var wechat = $("input[name='wechat']").val();
+                    var wechat = $("input[name='username']").val();//wechat前端废弃了，占用一下wechat这个坑，省的改数据库了
                     var alipay = $("input[name='alipay']").val();
                     var email = $("input[name='email']").val();
                     var province = $("input[id='inputProvince']").val();
                     var city = $("input[id='inputCity']").val();
                     var zone = $("input[id='inputZone']").val();
 
-                     collector.setPersonal(name, sex, age, phone, wechat, alipay, email, province, city,  zone);
+                     collector.setPersonal(username, sex, age, phone, wechat, alipay, email, province, city,  zone);
 
+                    //为了提交录音数据
+                    person_phone = phone;
                  case 101:
                      console.log("数字1");
                      console.log(collector);
